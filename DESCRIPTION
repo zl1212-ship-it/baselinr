@@ -1,6 +1,6 @@
 Package: baselinr
 Title: WWC-Aligned Baseline Equivalence Tables for Education Impact Evaluations
-Version: 0.1.0
+Version: 0.2.0
 Authors@R:
     person("Your", "Name", email = "zl1212@uw.edu", role = c("aut", "cre"))
 Description: Produces report-ready baseline equivalence tables for impact

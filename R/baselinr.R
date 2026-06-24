@@ -2,10 +2,10 @@
 #'
 #' baselinr produces report-ready baseline equivalence tables for impact
 #' evaluations in education research, following the conventions of the What
-#' Works Clearinghouse (WWC). It does one thing: take a data frame, a
-#' treatment indicator, and a set of continuous covariates, and report the
-#' standardized mean difference (Hedges' g) and WWC equivalence category for
-#' each covariate.
+#' Works Clearinghouse (WWC). It takes a data frame, a treatment indicator, and
+#' a set of covariates, and reports — for each covariate — the appropriate
+#' standardized effect size (Hedges' g for continuous covariates, the Cox index
+#' for binary covariates) together with the WWC baseline-equivalence category.
 #'
 #' @keywords internal
 "_PACKAGE"
@@ -39,7 +39,7 @@
 #' g <- c(1, 1, 1, 0, 0, 0)
 #' hedges_g(x, g) # 0.8
 #'
-#' @importFrom stats var sd
+#' @importFrom stats var sd qlogis
 #' @export
 hedges_g <- function(x, treatment, na.rm = TRUE) {
   if (!is.numeric(x)) {
@@ -80,14 +80,80 @@ hedges_g <- function(x, treatment, na.rm = TRUE) {
   d * correction
 }
 
+#' Cox index for a binary covariate
+#'
+#' Computes the What Works Clearinghouse (WWC) Cox index, a standardized effect
+#' size for a binary (dichotomous) covariate. The Cox index places the
+#' difference between two proportions on a scale comparable to Hedges' g, so it
+#' can be classified with the same baseline-equivalence thresholds.
+#'
+#' The index is \eqn{d_{Cox} = (\mathrm{logit}(p_t) - \mathrm{logit}(p_c)) /
+#' 1.65}, where \eqn{p_t} and \eqn{p_c} are the proportions in the "event"
+#' category for the treatment and comparison groups.
+#'
+#' @param x A binary covariate (numeric `0/1`, logical, two-level factor, or any
+#'   vector with exactly two unique non-missing values). The larger value (e.g.
+#'   `1`, `TRUE`, or the second sorted level) is treated as the "event".
+#' @param treatment Vector the same length as `x` identifying group membership;
+#'   exactly two unique non-missing values (see [hedges_g()]).
+#' @param na.rm Logical; drop rows where `x` or `treatment` is `NA`.
+#'   Default `TRUE`.
+#'
+#' @return A single numeric value: the Cox index. Returns `NA` (with a warning)
+#'   when a group proportion is exactly 0 or 1, where the index is undefined.
+#'
+#' @references What Works Clearinghouse (2022).
+#'   *Procedures Handbook* (Version 5.0). U.S. Department of Education.
+#'
+#' @examples
+#' x <- c(1, 1, 1, 1, 0, 1, 0, 0)
+#' g <- c(1, 1, 1, 1, 0, 0, 0, 0)
+#' cox_index(x, g)
+#'
+#' @export
+cox_index <- function(x, treatment, na.rm = TRUE) {
+  if (length(x) != length(treatment)) {
+    stop("`x` and `treatment` must have the same length.", call. = FALSE)
+  }
+  if (isTRUE(na.rm)) {
+    keep <- !is.na(x) & !is.na(treatment)
+    x <- x[keep]
+    treatment <- treatment[keep]
+  }
+  x_levs <- sort(unique(x))
+  if (length(x_levs) != 2L) {
+    stop("`x` must be binary (exactly two unique non-missing values).",
+      call. = FALSE
+    )
+  }
+  t_levs <- sort(unique(treatment))
+  if (length(t_levs) != 2L) {
+    stop("`treatment` must have exactly two unique non-missing values.",
+      call. = FALSE
+    )
+  }
+  event <- x_levs[2]
+  is_event <- x == event
+  p_t <- mean(is_event[treatment == t_levs[2]])
+  p_c <- mean(is_event[treatment == t_levs[1]])
+  if (p_t %in% c(0, 1) || p_c %in% c(0, 1)) {
+    warning(
+      "Cox index is undefined when a group proportion is 0 or 1; returning NA.",
+      call. = FALSE
+    )
+    return(NA_real_)
+  }
+  (qlogis(p_t) - qlogis(p_c)) / 1.65
+}
+
 #' Classify baseline equivalence under WWC standards
 #'
-#' Maps standardized mean differences to the three What Works Clearinghouse
+#' Maps standardized effect sizes to the three What Works Clearinghouse
 #' baseline-equivalence categories. Sign is ignored; classification uses the
 #' absolute value of the effect size.
 #'
-#' @param es Numeric vector of standardized mean differences (e.g. values
-#'   returned by [hedges_g()]).
+#' @param es Numeric vector of standardized effect sizes (e.g. values returned
+#'   by [hedges_g()] or [cox_index()]).
 #'
 #' @return A character vector the same length as `es`:
 #'   * `"satisfied"` when `|es| <= 0.05` (no adjustment needed),
@@ -120,26 +186,30 @@ wwc_classify <- function(es) {
 
 #' Baseline equivalence table for an impact evaluation
 #'
-#' Builds a report-ready baseline-equivalence table for a set of continuous
-#' covariates, reporting group sample sizes, means, standard deviations,
-#' Hedges' g, and the corresponding What Works Clearinghouse (WWC) equivalence
-#' category for each covariate.
+#' Builds a report-ready baseline-equivalence table for a set of covariates,
+#' reporting group sample sizes, summaries, the appropriate standardized effect
+#' size, and the corresponding What Works Clearinghouse (WWC) equivalence
+#' category for each covariate. Continuous covariates use Hedges' g; binary
+#' covariates use the Cox index.
 #'
 #' @param data A data frame.
 #' @param treatment String naming the column in `data` that identifies group
 #'   membership. Must have exactly two unique non-missing values (see
 #'   [hedges_g()] for how the treatment group is determined).
 #' @param covariates Character vector of column names to evaluate. Defaults to
-#'   all numeric columns in `data` other than `treatment`.
+#'   all numeric, logical, and factor columns in `data` other than `treatment`.
 #'
-#' @return A data frame with one row per covariate and the columns
-#'   `covariate`, `n_treatment`, `n_comparison`, `mean_treatment`,
-#'   `mean_comparison`, `sd_treatment`, `sd_comparison`, `hedges_g`, and
+#' @return A data frame with one row per covariate and the columns:
+#'   `covariate`; `type` (`"continuous"` or `"binary"`); `n_treatment`,
+#'   `n_comparison`; `mean_treatment`, `mean_comparison` (group means for
+#'   continuous covariates, event proportions for binary ones); `sd_treatment`,
+#'   `sd_comparison`; `effect_size` (Hedges' g or Cox index, per `type`); and
 #'   `wwc_category`.
 #'
-#' @section Scope:
-#' Version 0.1.0 supports continuous covariates only. Binary covariates (via
-#' the WWC Cox index) are on the roadmap; see `NEWS.md`.
+#' @details
+#' A covariate with exactly two unique non-missing values is treated as binary;
+#' any other numeric covariate is treated as continuous. A non-numeric covariate
+#' with more than two categories is not supported and raises an error.
 #'
 #' @references What Works Clearinghouse (2022).
 #'   *Procedures Handbook* (Version 5.0). U.S. Department of Education.
@@ -147,7 +217,8 @@ wwc_classify <- function(es) {
 #' @examples
 #' df <- data.frame(
 #'   treat = c(1, 1, 1, 0, 0, 0),
-#'   pretest = c(5, 6, 7, 4, 5, 6)
+#'   pretest = c(5, 6, 7, 4, 5, 6),
+#'   female = c(1, 0, 1, 0, 0, 1)
 #' )
 #' baseline_equivalence(df, treatment = "treat")
 #'
@@ -170,8 +241,12 @@ baseline_equivalence <- function(data, treatment, covariates = NULL) {
     )
   }
   if (is.null(covariates)) {
-    is_num <- vapply(data, is.numeric, logical(1))
-    covariates <- setdiff(names(data)[is_num], treatment)
+    eligible <- vapply(
+      data,
+      function(col) is.numeric(col) || is.logical(col) || is.factor(col),
+      logical(1)
+    )
+    covariates <- setdiff(names(data)[eligible], treatment)
   }
   if (length(covariates) == 0L) {
     stop("No covariates to evaluate.", call. = FALSE)
@@ -185,32 +260,58 @@ baseline_equivalence <- function(data, treatment, covariates = NULL) {
   }
 
   rows <- lapply(covariates, function(cv) {
-    x <- data[[cv]]
-    if (!is.numeric(x)) {
+    .baseline_row(cv, data[[cv]], grp, levs)
+  })
+  out <- do.call(rbind, rows)
+  out$wwc_category <- wwc_classify(out$effect_size)
+  rownames(out) <- NULL
+  out
+}
+
+# Internal: build one table row for a single covariate.
+.baseline_row <- function(cv, x, grp, levs) {
+  keep <- !is.na(x) & !is.na(grp)
+  xk <- x[keep]
+  gk <- grp[keep]
+  treat_idx <- gk == levs[2]
+  comp_idx <- gk == levs[1]
+  uniq <- unique(xk)
+
+  if (length(uniq) == 2L) {
+    # Binary covariate -> Cox index; summaries are event proportions.
+    event <- sort(uniq)[2]
+    ind <- as.integer(xk == event)
+    row <- data.frame(
+      covariate = cv,
+      type = "binary",
+      n_treatment = sum(treat_idx),
+      n_comparison = sum(comp_idx),
+      mean_treatment = mean(ind[treat_idx]),
+      mean_comparison = mean(ind[comp_idx]),
+      sd_treatment = sd(ind[treat_idx]),
+      sd_comparison = sd(ind[comp_idx]),
+      effect_size = cox_index(xk, gk),
+      stringsAsFactors = FALSE
+    )
+  } else {
+    if (!is.numeric(xk)) {
       stop(sprintf(
-        "Covariate '%s' is not numeric (v0.1.0 supports continuous covariates only).",
+        "Covariate '%s' has more than two categories and is not numeric; not supported.",
         cv
       ), call. = FALSE)
     }
-    keep <- !is.na(x) & !is.na(grp)
-    xk <- x[keep]
-    gk <- grp[keep]
-    comparison <- xk[gk == levs[1]]
-    treated <- xk[gk == levs[2]]
-    data.frame(
+    row <- data.frame(
       covariate = cv,
-      n_treatment = length(treated),
-      n_comparison = length(comparison),
-      mean_treatment = mean(treated),
-      mean_comparison = mean(comparison),
-      sd_treatment = sd(treated),
-      sd_comparison = sd(comparison),
-      hedges_g = hedges_g(xk, gk),
+      type = "continuous",
+      n_treatment = sum(treat_idx),
+      n_comparison = sum(comp_idx),
+      mean_treatment = mean(xk[treat_idx]),
+      mean_comparison = mean(xk[comp_idx]),
+      sd_treatment = sd(xk[treat_idx]),
+      sd_comparison = sd(xk[comp_idx]),
+      effect_size = hedges_g(xk, gk),
       stringsAsFactors = FALSE
     )
-  })
-  out <- do.call(rbind, rows)
-  out$wwc_category <- wwc_classify(out$hedges_g)
-  rownames(out) <- NULL
-  out
+  }
+  row
 }
