@@ -1,6 +1,6 @@
 Package: baselinr
 Title: WWC-Aligned Baseline Equivalence Tables for Education Impact Evaluations
-Version: 0.3.0
+Version: 0.4.0
 Authors@R:
     person("Your", "Name", email = "zl1212@uw.edu", role = c("aut", "cre"))
 Description: Produces report-ready baseline equivalence tables for impact
@@ -27,3 +27,6 @@ VignetteBuilder: knitr
 URL: https://github.com/zl1212-ship-it/baselinr
 BugReports: https://github.com/zl1212-ship-it/baselinr/issues
 Config/roxygen2/version: 8.0.0
+Depends: 
+    R (>= 3.5)
+LazyData: true
