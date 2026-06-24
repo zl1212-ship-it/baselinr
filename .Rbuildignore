@@ -7,5 +7,6 @@
 ^\.lintr$
 ^paper\.md$
 ^paper\.bib$
+^data-raw$
 ^.*\.Rproj$
 ^\.Rproj\.user$

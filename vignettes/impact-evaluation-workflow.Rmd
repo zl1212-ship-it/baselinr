@@ -1,0 +1,87 @@
+---
+title: "An impact-evaluation workflow"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{An impact-evaluation workflow}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+This vignette walks from a study's raw data to a baseline-equivalence report,
+using the bundled (simulated) `tutoring` dataset.
+
+```{r setup}
+library(baselinr)
+data(tutoring)
+head(tutoring)
+```
+
+`tutoring` is a **simulated** quasi-experimental evaluation: 200 students who
+received a tutoring program (`treat = 1`) and 200 who did not (`treat = 0`),
+with baseline covariates and a post-program `posttest`.
+
+## Step 1: assess baseline equivalence — *before* looking at the outcome
+
+The credibility of any later effect estimate rests on whether the two groups
+were comparable at baseline. We pass the **baseline** covariates explicitly —
+crucially **not** `posttest`, which is an outcome, not a baseline covariate.
+
+```{r}
+baseline_covs <- c("pretest", "attendance", "age", "female", "frpl", "ell")
+
+equiv <- baseline_equivalence(tutoring, treatment = "treat",
+                              covariates = baseline_covs)
+
+knitr::kable(equiv, digits = 3)
+```
+
+`baselinr` automatically uses Hedges' g for the continuous covariates
+(`pretest`, `attendance`, `age`) and the Cox index for the binary ones
+(`female`, `frpl`, `ell`).
+
+## Step 2: read the categories
+
+Each covariate falls into one of three What Works Clearinghouse categories:
+
+```{r}
+equiv[, c("covariate", "effect_size", "wwc_category")]
+```
+
+- **`satisfied`** — the groups are equivalent on this covariate; nothing more to
+  do.
+- **`satisfied_with_adjustment`** — equivalence holds *only if* you statistically
+  adjust for this covariate in the impact model. This is a commitment, not a
+  pass: those covariates **must** appear in the model.
+- **`not_satisfied`** — this covariate cannot establish equivalence even with
+  adjustment. It's a threat to the study's credibility that you have to confront,
+  not bury.
+
+## Step 3: visualise
+
+```{r lovefig, eval = requireNamespace("ggplot2", quietly = TRUE), fig.width = 7, fig.height = 3}
+love_plot(equiv)
+```
+
+The dashed lines mark the 0.05 and 0.25 thresholds; points are coloured by
+category. The plot makes the at-risk covariates obvious at a glance.
+
+## Step 4: a report-ready table
+
+For a written report or a Quarto/HTML document, `gt_baseline()` returns a
+formatted `gt` table:
+
+```{r eval = FALSE}
+gt_baseline(equiv)
+```
+
+## What this does and doesn't tell you
+
+`baselinr` reports the baseline equivalence picture. It does **not** fit the
+impact model for you. The next steps are yours: include the
+`satisfied_with_adjustment` covariates in the model, and decide how to handle
+(or report the limitation of) any `not_satisfied` covariate before you interpret
+the program's effect on `posttest`.
