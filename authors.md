@@ -2,20 +2,21 @@
 
 ## Authors
 
-- **Your Name**. Author, maintainer.
+- **Yuxia Liang**. Author, maintainer.
+  [](https://orcid.org/0009-0008-6489-3836)
 
 ## Citation
 
 Source:
 [`DESCRIPTION`](https://github.com/zl1212-ship-it/baselinr/blob/main/DESCRIPTION)
 
-Name Y (2026). *baselinr: WWC-Aligned Baseline Equivalence Tables for
+Liang Y (2026). *baselinr: WWC-Aligned Baseline Equivalence Tables for
 Education Impact Evaluations*. R package version 0.4.0,
 <https://github.com/zl1212-ship-it/baselinr>.
 
     @Manual{,
       title = {baselinr: WWC-Aligned Baseline Equivalence Tables for Education Impact Evaluations},
-      author = {Your Name},
+      author = {Yuxia Liang},
       year = {2026},
       note = {R package version 0.4.0},
       url = {https://github.com/zl1212-ship-it/baselinr},

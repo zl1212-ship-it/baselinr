@@ -81,4 +81,4 @@ factor) use the WWC Cox index. See `NEWS.md` for the roadmap.
 
 ## License
 
-MIT © baselinr authors
+MIT © Yuxia Liang

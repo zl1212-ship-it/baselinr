@@ -20,8 +20,10 @@ Useful links:
 
 ## Author
 
-**Maintainer**: Your Name <zl1212@uw.edu>
+**Maintainer**: Yuxia Liang <zl1212@uw.edu>
+([ORCID](https://orcid.org/0009-0008-6489-3836))
 
 Authors:
 
-- Your Name <zl1212@uw.edu>
+- Yuxia Liang <zl1212@uw.edu>
+  ([ORCID](https://orcid.org/0009-0008-6489-3836))
