@@ -1,0 +1,12 @@
+url: https://zl1212-ship-it.github.io/baselinr/
+
+template:
+  bootstrap: 5
+
+reference:
+- title: Baseline equivalence
+  desc: Build WWC-aligned baseline equivalence tables and effect sizes.
+  contents:
+  - baseline_equivalence
+  - hedges_g
+  - wwc_classify
