@@ -82,7 +82,9 @@ gt_baseline(baseline_equivalence(study, treatment = "treat"))
 
 Continuous covariates use Hedges’ g (with the WWC small-sample
 correction); binary covariates (numeric `0/1`, logical, or two-level
-factor) use the WWC Cox index. See `NEWS.md` for the roadmap.
+factor) use the WWC Cox index. `wwc_summary()` collapses the table into
+an overall verdict, and `attrition()` reports overall and differential
+attrition. See `NEWS.md` for the roadmap.
 
 ## License
 
