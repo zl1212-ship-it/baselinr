@@ -23,11 +23,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Your Name \email{zl1212@uw.edu}
+\strong{Maintainer}: Yuxia Liang \email{zl1212@uw.edu} (\href{https://orcid.org/0009-0008-6489-3836}{ORCID})
 
 Authors:
 \itemize{
-  \item Your Name \email{zl1212@uw.edu}
+  \item Yuxia Liang \email{zl1212@uw.edu} (\href{https://orcid.org/0009-0008-6489-3836}{ORCID})
 }
 
 }
