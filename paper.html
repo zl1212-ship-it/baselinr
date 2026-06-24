@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">baselinr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,6 +55,8 @@
 <code><a href="reference/wwc_classify.html">wwc_classify()</a></code> maps standardized effect sizes to the three WWC categories: <code>satisfied</code> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>e</mi><mi>s</mi><mo stretchy="false" form="prefix">|</mo><mo>≤</mo><mn>0.05</mn></mrow><annotation encoding="application/x-tex">|es| \le 0.05</annotation></semantics></math>), <code>satisfied_with_adjustment</code> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.05</mn><mo>&lt;</mo><mo stretchy="false" form="prefix">|</mo><mi>e</mi><mi>s</mi><mo stretchy="false" form="prefix">|</mo><mo>≤</mo><mn>0.25</mn></mrow><annotation encoding="application/x-tex">0.05 &lt; |es| \le 0.25</annotation></semantics></math>), and <code>not_satisfied</code> (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>e</mi><mi>s</mi><mo stretchy="false" form="prefix">|</mo><mo>&gt;</mo><mn>0.25</mn></mrow><annotation encoding="application/x-tex">|es| &gt; 0.25</annotation></semantics></math>) [@wwc2022].</li>
 <li>
 <code><a href="reference/baseline_equivalence.html">baseline_equivalence()</a></code> combines these into a one-row-per-covariate table of group sizes, summary statistics, the appropriate effect size, and WWC category, choosing Hedges’ g or the Cox index based on whether each covariate is continuous or binary.</li>
+<li>
+<code><a href="reference/love_plot.html">love_plot()</a></code> and <code><a href="reference/gt_baseline.html">gt_baseline()</a></code> present that table as a Love plot of standardized effect sizes (with WWC threshold lines) and as a formatted <code>gt</code> table, respectively.</li>
 </ul><p>The package depends only on base R [@rcoreteam], is covered by unit tests, and ships with a worked example in its vignette.</p>
 </div>
 <div class="section level1">
@@ -78,7 +80,7 @@
 </div>
 <div class="section level1">
 <h1 id="scope-and-limitations">Scope and limitations<a class="anchor" aria-label="anchor" href="#scope-and-limitations"></a></h1>
-<p><code>baselinr</code> handles continuous covariates (Hedges’ g) and binary covariates (the Cox index). Formatted report output and a Love plot of standardized effect sizes across covariates are planned. <code>baselinr</code> reports baseline-equivalence statistics; it does not select covariates, fit impact models, or make adequacy determinations on the user’s behalf.</p>
+<p><code>baselinr</code> handles continuous covariates (Hedges’ g) and binary covariates (the Cox index), and presents results as a Love plot (<code><a href="reference/love_plot.html">love_plot()</a></code>) or a formatted <code>gt</code> table (<code><a href="reference/gt_baseline.html">gt_baseline()</a></code>). <code>baselinr</code> reports baseline-equivalence statistics; it does not select covariates, fit impact models, or make adequacy determinations on the user’s behalf.</p>
 </div>
 <div class="section level1">
 <h1 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a></h1>

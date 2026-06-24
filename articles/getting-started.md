@@ -68,9 +68,33 @@ wwc_classify(c(0.03, 0.12, 0.80))
 #> [3] "not_satisfied"
 ```
 
+## Visualise and format
+
+A Love plot shows each covariate’s standardized effect size against the
+WWC thresholds (0.05 and 0.25), coloured by category:
+
+``` r
+
+love_plot(baseline_equivalence(study, treatment = "treat"))
+```
+
+![](getting-started_files/figure-html/loveplot-1.png)
+
+For a report-ready table,
+[`gt_baseline()`](https://zl1212-ship-it.github.io/baselinr/reference/gt_baseline.md)
+returns a formatted `gt` table:
+
+``` r
+
+gt_baseline(baseline_equivalence(study, treatment = "treat"))
+```
+
 ## Scope
 
 Continuous covariates use Hedges’ g (with the WWC small-sample
-correction); binary covariates use the WWC Cox index. Formatted report
-output and a Love plot of standardized effect sizes are on the roadmap —
-see `NEWS.md`.
+correction); binary covariates use the WWC Cox index. Visualise results
+with
+[`love_plot()`](https://zl1212-ship-it.github.io/baselinr/reference/love_plot.md)
+and format them with
+[`gt_baseline()`](https://zl1212-ship-it.github.io/baselinr/reference/gt_baseline.md).
+See `NEWS.md` for the roadmap.

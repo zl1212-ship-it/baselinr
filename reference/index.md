@@ -12,3 +12,12 @@ Build WWC-aligned baseline equivalence tables and effect sizes.
   : Cox index for a binary covariate
 - [`wwc_classify()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_classify.md)
   : Classify baseline equivalence under WWC standards
+
+## Report output
+
+Visualise and format a baseline equivalence table.
+
+- [`love_plot()`](https://zl1212-ship-it.github.io/baselinr/reference/love_plot.md)
+  : Love plot of standardized effect sizes
+- [`gt_baseline()`](https://zl1212-ship-it.github.io/baselinr/reference/gt_baseline.md)
+  : Format a baseline equivalence table with gt

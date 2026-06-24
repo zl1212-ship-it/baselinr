@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">baselinr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,15 +82,15 @@
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="reference/baseline_equivalence.html">baseline_equivalence</a></span><span class="op">(</span><span class="va">study</span>, treatment <span class="op">=</span> <span class="st">"treat"</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
-<col width="7%">
-<col width="8%">
-<col width="9%">
-<col width="10%">
-<col width="11%">
-<col width="12%">
 <col width="10%">
 <col width="10%">
-<col width="9%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
 <col width="10%">
 </colgroup>
 <thead><tr>
@@ -115,7 +115,7 @@
 <td align="right">5.000</td>
 <td align="right">1.000</td>
 <td align="right">1.000</td>
-<td align="right">0.800</td>
+<td align="right">0.80</td>
 <td align="left">not_satisfied</td>
 </tr>
 <tr>
@@ -127,7 +127,7 @@
 <td align="right">0.333</td>
 <td align="right">0.577</td>
 <td align="right">0.577</td>
-<td align="right">0.840</td>
+<td align="right">0.84</td>
 <td align="left">not_satisfied</td>
 </tr>
 </tbody>
@@ -166,9 +166,20 @@
 </table>
 </div>
 <div class="section level2">
+<h2 id="visualise-and-format">Visualise and format<a class="anchor" aria-label="anchor" href="#visualise-and-format"></a>
+</h2>
+<p><code><a href="reference/love_plot.html">love_plot()</a></code> shows every covariate’s standardized effect size against the WWC thresholds (requires <code>ggplot2</code>):</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/love_plot.html">love_plot</a></span><span class="op">(</span><span class="fu"><a href="reference/baseline_equivalence.html">baseline_equivalence</a></span><span class="op">(</span><span class="va">study</span>, treatment <span class="op">=</span> <span class="st">"treat"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-loveplot-1.png" alt="Love plot of standardized effect sizes by covariate" width="100%"></p>
+<p><code><a href="reference/gt_baseline.html">gt_baseline()</a></code> renders the same table as a formatted <code>gt</code> table for reports and Quarto/HTML (requires <code>gt</code>):</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/gt_baseline.html">gt_baseline</a></span><span class="op">(</span><span class="fu"><a href="reference/baseline_equivalence.html">baseline_equivalence</a></span><span class="op">(</span><span class="va">study</span>, treatment <span class="op">=</span> <span class="st">"treat"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="scope">Scope<a class="anchor" aria-label="anchor" href="#scope"></a>
 </h2>
-<p>Continuous covariates use Hedges’ g (with the WWC small-sample correction); binary covariates (numeric <code>0/1</code>, logical, or two-level factor) use the WWC Cox index. Formatted report output (<code>gt</code> / <code>flextable</code>) and a Love plot are on the roadmap — see <code>NEWS.md</code>.</p>
+<p>Continuous covariates use Hedges’ g (with the WWC small-sample correction); binary covariates (numeric <code>0/1</code>, logical, or two-level factor) use the WWC Cox index. See <code>NEWS.md</code> for the roadmap.</p>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
