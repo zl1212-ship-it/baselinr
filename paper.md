@@ -8,11 +8,11 @@ tags:
   - What Works Clearinghouse
   - effect size
 authors:
-  - name: Your Name # DRAFT: human to verify
-    orcid: 0000-0000-0000-0000 # DRAFT: add real ORCID
+  - name: Yuxia Liang
+    orcid: 0009-0008-6489-3836
     affiliation: 1
 affiliations:
-  - name: "Affiliation — DRAFT: human to verify" # DRAFT
+  - name: University of Washington, Seattle
     index: 1
 date: 24 June 2026
 bibliography: paper.bib
