@@ -8,5 +8,7 @@
 ^paper\.md$
 ^paper\.bib$
 ^data-raw$
+^cran-comments\.md$
+^CONTRIBUTING\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
