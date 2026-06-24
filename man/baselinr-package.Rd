@@ -17,6 +17,7 @@ for binary covariates) together with the WWC baseline-equivalence category.
 Useful links:
 \itemize{
   \item \url{https://github.com/zl1212-ship-it/baselinr}
+  \item \url{https://zl1212-ship-it.github.io/baselinr/}
   \item Report bugs at \url{https://github.com/zl1212-ship-it/baselinr/issues}
 }
 

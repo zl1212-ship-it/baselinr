@@ -62,8 +62,8 @@ The WWC categories are:
 
 ## Visualise and format
 
-`love_plot()` shows every covariate’s standardized effect size against
-the WWC thresholds (requires `ggplot2`):
+`love_plot()` shows the standardized effect size of every covariate
+against the WWC thresholds (requires `ggplot2`):
 
 ``` r
 love_plot(baseline_equivalence(study, treatment = "treat"))

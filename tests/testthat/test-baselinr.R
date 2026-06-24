@@ -38,14 +38,14 @@ test_that("cox_index matches a hand-computed value", {
 
 test_that("cox_index handles logical and factor binaries", {
   x_log <- c(TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE)
-  g <- c(1, 1, 1, 1, 0, 0, 0, 0) # p_t = 1.0 -> undefined
+  g <- c(1, 1, 1, 1, 0, 0, 0, 0) # treatment group is all events, so undefined
   expect_warning(r <- cox_index(x_log, g))
   expect_true(is.na(r))
 })
 
 test_that("cox_index returns NA (with warning) at a 0/1 proportion", {
   x <- c(1, 1, 1, 1, 0, 0, 0, 1)
-  g <- c(1, 1, 1, 1, 0, 0, 0, 0) # p_t = 1
+  g <- c(1, 1, 1, 1, 0, 0, 0, 0) # treatment proportion is one
   expect_warning(r <- cox_index(x, g), "undefined")
   expect_true(is.na(r))
 })
@@ -121,6 +121,36 @@ test_that("baseline_equivalence default picks numeric, logical, and factor cols"
   )
   res <- baseline_equivalence(df, treatment = "treat")
   expect_setequal(res$covariate, c("x", "flag", "grp")) # character `id` excluded
+})
+
+test_that("hedges_g errors when a group has fewer than two observations", {
+  expect_error(hedges_g(c(1, 2, 3), c(1, 0, 0)), "at least two")
+})
+
+test_that("hedges_g errors when the pooled standard deviation is zero", {
+  expect_error(hedges_g(c(5, 5, 5, 5), c(1, 1, 0, 0)), "zero")
+})
+
+test_that("cox_index errors when treatment has one level", {
+  expect_error(cox_index(c(1, 0, 1, 0), c(1, 1, 1, 1)), "exactly two")
+})
+
+test_that("baseline_equivalence errors on a non-string treatment argument", {
+  df <- data.frame(treat = c(1, 1, 0, 0), x = c(1, 2, 3, 4))
+  expect_error(baseline_equivalence(df, c("treat", "x")), "single column name")
+})
+
+test_that("baseline_equivalence errors when no eligible covariates remain", {
+  df <- data.frame(treat = c(1, 1, 0, 0), note = c("a", "b", "c", "d"))
+  expect_error(baseline_equivalence(df, "treat"), "No covariates")
+})
+
+test_that("baseline_equivalence errors on covariates not in the data", {
+  df <- data.frame(treat = c(1, 1, 0, 0), x = c(1, 2, 3, 4))
+  expect_error(
+    baseline_equivalence(df, "treat", covariates = c("x", "nope")),
+    "not found"
+  )
 })
 
 test_that("baseline_equivalence validates its inputs", {

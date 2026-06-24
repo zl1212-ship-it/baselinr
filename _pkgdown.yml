@@ -16,3 +16,7 @@ reference:
   contents:
   - love_plot
   - gt_baseline
+- title: Data
+  desc: Example dataset.
+  contents:
+  - tutoring
