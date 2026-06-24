@@ -1,6 +1,6 @@
 # Classify baseline equivalence under WWC standards
 
-Maps standardized mean differences to the three What Works Clearinghouse
+Maps standardized effect sizes to the three What Works Clearinghouse
 baseline-equivalence categories. Sign is ignored; classification uses
 the absolute value of the effect size.
 
@@ -14,9 +14,10 @@ wwc_classify(es)
 
 - es:
 
-  Numeric vector of standardized mean differences (e.g. values returned
-  by
-  [`hedges_g()`](https://zl1212-ship-it.github.io/baselinr/reference/hedges_g.md)).
+  Numeric vector of standardized effect sizes (e.g. values returned by
+  [`hedges_g()`](https://zl1212-ship-it.github.io/baselinr/reference/hedges_g.md)
+  or
+  [`cox_index()`](https://zl1212-ship-it.github.io/baselinr/reference/cox_index.md)).
 
 ## Value
 
@@ -27,9 +28,7 @@ A character vector the same length as `es`:
 - `"satisfied_with_adjustment"` when `0.05 < |es| <= 0.25` (equivalence
   holds only if the covariate is adjusted for in the impact model),
 
-- `"not_satisfied"` when `|es| > 0.25`.
-
-`NA` inputs return `NA`.
+- `"not_satisfied"` when `|es| > 0.25`. `NA` inputs return `NA`.
 
 ## References
 
