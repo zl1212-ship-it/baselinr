@@ -39,23 +39,29 @@ not something you assemble by hand for every report.
 ```{r}
 study <- data.frame(
   treat = c(1, 1, 1, 0, 0, 0),
-  pretest = c(5, 6, 7, 4, 5, 6)
+  pretest = c(5, 6, 7, 4, 5, 6), # continuous -> Hedges' g
+  female = c(1, 0, 1, 0, 0, 1) # binary     -> Cox index
 )
 
 baseline_equivalence(study, treatment = "treat")
 ```
 
-By default, every numeric column other than the treatment indicator is treated
-as a covariate. Pass `covariates =` to control the set explicitly.
+By default, every numeric, logical, and factor column other than the treatment
+indicator is treated as a covariate. A covariate with exactly two unique values
+is treated as binary and summarized with the Cox index; other numeric covariates
+use Hedges' g. Pass `covariates =` to control the set explicitly.
 
 ## The building blocks
 
-`baseline_equivalence()` is built from two exported helpers you can also call
+`baseline_equivalence()` is built from exported helpers you can also call
 directly.
 
 ```{r}
-# Standardized mean difference (Hedges' g) for one covariate
+# Standardized mean difference (Hedges' g) for a continuous covariate
 hedges_g(study$pretest, study$treat)
+
+# Cox index for a binary covariate
+cox_index(study$female, study$treat)
 
 # Classify any effect size(s) into the WWC categories
 wwc_classify(c(0.03, 0.12, 0.80))
@@ -63,6 +69,6 @@ wwc_classify(c(0.03, 0.12, 0.80))
 
 ## Scope
 
-Version 0.1.0 handles continuous covariates. Binary covariates (via the WWC
-Cox index), formatted report output, and a Love plot are on the roadmap — see
-`NEWS.md`.
+Continuous covariates use Hedges' g (with the WWC small-sample correction);
+binary covariates use the WWC Cox index. Formatted report output and a Love plot
+of standardized effect sizes are on the roadmap — see `NEWS.md`.

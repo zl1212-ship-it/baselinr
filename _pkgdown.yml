@@ -9,4 +9,5 @@ reference:
   contents:
   - baseline_equivalence
   - hedges_g
+  - cox_index
   - wwc_classify

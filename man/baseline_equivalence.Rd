@@ -14,30 +14,33 @@ membership. Must have exactly two unique non-missing values (see
 \code{\link[=hedges_g]{hedges_g()}} for how the treatment group is determined).}
 
 \item{covariates}{Character vector of column names to evaluate. Defaults to
-all numeric columns in \code{data} other than \code{treatment}.}
+all numeric, logical, and factor columns in \code{data} other than \code{treatment}.}
 }
 \value{
-A data frame with one row per covariate and the columns
-\code{covariate}, \code{n_treatment}, \code{n_comparison}, \code{mean_treatment},
-\code{mean_comparison}, \code{sd_treatment}, \code{sd_comparison}, \code{hedges_g}, and
+A data frame with one row per covariate and the columns:
+\code{covariate}; \code{type} (\code{"continuous"} or \code{"binary"}); \code{n_treatment},
+\code{n_comparison}; \code{mean_treatment}, \code{mean_comparison} (group means for
+continuous covariates, event proportions for binary ones); \code{sd_treatment},
+\code{sd_comparison}; \code{effect_size} (Hedges' g or Cox index, per \code{type}); and
 \code{wwc_category}.
 }
 \description{
-Builds a report-ready baseline-equivalence table for a set of continuous
-covariates, reporting group sample sizes, means, standard deviations,
-Hedges' g, and the corresponding What Works Clearinghouse (WWC) equivalence
-category for each covariate.
+Builds a report-ready baseline-equivalence table for a set of covariates,
+reporting group sample sizes, summaries, the appropriate standardized effect
+size, and the corresponding What Works Clearinghouse (WWC) equivalence
+category for each covariate. Continuous covariates use Hedges' g; binary
+covariates use the Cox index.
 }
-\section{Scope}{
-
-Version 0.1.0 supports continuous covariates only. Binary covariates (via
-the WWC Cox index) are on the roadmap; see \code{NEWS.md}.
+\details{
+A covariate with exactly two unique non-missing values is treated as binary;
+any other numeric covariate is treated as continuous. A non-numeric covariate
+with more than two categories is not supported and raises an error.
 }
-
 \examples{
 df <- data.frame(
   treat = c(1, 1, 1, 0, 0, 0),
-  pretest = c(5, 6, 7, 4, 5, 6)
+  pretest = c(5, 6, 7, 4, 5, 6),
+  female = c(1, 0, 1, 0, 0, 1)
 )
 baseline_equivalence(df, treatment = "treat")
 
