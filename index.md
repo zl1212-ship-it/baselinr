@@ -53,7 +53,7 @@ The WWC categories are:
 ## Visualise and format
 
 [`love_plot()`](https://zl1212-ship-it.github.io/baselinr/reference/love_plot.md)
-shows every covariate’s standardized effect size against the WWC
+shows the standardized effect size of every covariate against the WWC
 thresholds (requires `ggplot2`):
 
 ``` r

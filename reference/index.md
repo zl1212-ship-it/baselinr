@@ -21,3 +21,10 @@ Visualise and format a baseline equivalence table.
   : Love plot of standardized effect sizes
 - [`gt_baseline()`](https://zl1212-ship-it.github.io/baselinr/reference/gt_baseline.md)
   : Format a baseline equivalence table with gt
+
+## Data
+
+Example dataset.
+
+- [`tutoring`](https://zl1212-ship-it.github.io/baselinr/reference/tutoring.md)
+  : Simulated tutoring program evaluation

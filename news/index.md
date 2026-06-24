@@ -1,5 +1,14 @@
 # Changelog
 
+## baselinr 0.4.0
+
+- New bundled dataset `tutoring`: a simulated quasi-experimental
+  tutoring evaluation (400 students) whose covariates span all three WWC
+  equivalence categories. See `data-raw/tutoring.R` for how it is
+  generated.
+- New vignette “An impact-evaluation workflow” walking from raw study
+  data to a baseline-equivalence report, Love plot, and formatted table.
+
 ## baselinr 0.3.0
 
 - New

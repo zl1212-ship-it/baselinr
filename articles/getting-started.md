@@ -70,8 +70,8 @@ wwc_classify(c(0.03, 0.12, 0.80))
 
 ## Visualise and format
 
-A Love plot shows each covariate’s standardized effect size against the
-WWC thresholds (0.05 and 0.25), coloured by category:
+A Love plot shows the standardized effect size of each covariate against
+the WWC thresholds (0.05 and 0.25), coloured by category:
 
 ``` r
 

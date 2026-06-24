@@ -14,6 +14,8 @@ Useful links:
 
 - <https://github.com/zl1212-ship-it/baselinr>
 
+- <https://zl1212-ship-it.github.io/baselinr/>
+
 - Report bugs at <https://github.com/zl1212-ship-it/baselinr/issues>
 
 ## Author
