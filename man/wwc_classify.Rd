@@ -7,22 +7,22 @@
 wwc_classify(es)
 }
 \arguments{
-\item{es}{Numeric vector of standardized mean differences (e.g. values
-returned by \code{\link[=hedges_g]{hedges_g()}}).}
+\item{es}{Numeric vector of standardized effect sizes (e.g. values returned
+by \code{\link[=hedges_g]{hedges_g()}} or \code{\link[=cox_index]{cox_index()}}).}
 }
 \value{
 A character vector the same length as \code{es}:
 \itemize{
-\item \code{"satisfied"} when \code{|es| <= 0.05} (no adjustment needed),
-\item \code{"satisfied_with_adjustment"} when \code{0.05 < |es| <= 0.25}
+\item \code{"satisfied"} when \verb{|es| <= 0.05} (no adjustment needed),
+\item \code{"satisfied_with_adjustment"} when \verb{0.05 < |es| <= 0.25}
 (equivalence holds only if the covariate is adjusted for in the
 impact model),
-\item \code{"not_satisfied"} when \code{|es| > 0.25}.
-}
+\item \code{"not_satisfied"} when \verb{|es| > 0.25}.
 \code{NA} inputs return \code{NA}.
 }
+}
 \description{
-Maps standardized mean differences to the three What Works Clearinghouse
+Maps standardized effect sizes to the three What Works Clearinghouse
 baseline-equivalence categories. Sign is ignored; classification uses the
 absolute value of the effect size.
 }
