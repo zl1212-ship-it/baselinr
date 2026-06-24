@@ -104,6 +104,4 @@ or a formatted `gt` table
 covariates, fit impact models, or make adequacy determinations on the
 user’s behalf.
 
-# Acknowledgements
-
 # References
