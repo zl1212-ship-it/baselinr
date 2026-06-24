@@ -12,10 +12,11 @@ Description: Produces report-ready baseline equivalence tables for impact
     satisfied).
 License: MIT + file LICENSE
 Encoding: UTF-8
+Language: en-US
 Roxygen: list(markdown = TRUE)
 Imports:
-    stats,
-    utils
+    rlang,
+    stats
 Suggests:
     ggplot2,
     gt,
@@ -24,7 +25,7 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-URL: https://github.com/zl1212-ship-it/baselinr
+URL: https://github.com/zl1212-ship-it/baselinr, https://zl1212-ship-it.github.io/baselinr/
 BugReports: https://github.com/zl1212-ship-it/baselinr/issues
 Config/roxygen2/version: 8.0.0
 Depends: 

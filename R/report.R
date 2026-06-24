@@ -1,6 +1,3 @@
-# Bare column names used inside ggplot2::aes() below.
-globalVariables(c("plot_value", "covariate", "wwc_category"))
-
 #' Love plot of standardized effect sizes
 #'
 #' Plots the standardized effect size for each covariate from
@@ -26,7 +23,7 @@ globalVariables(c("plot_value", "covariate", "wwc_category"))
 #' }
 #'
 #' @importFrom stats reorder
-#' @importFrom utils globalVariables
+#' @importFrom rlang .data
 #' @export
 love_plot <- function(equivalence, signed = FALSE) {
   if (!requireNamespace("ggplot2", quietly = TRUE)) {
@@ -53,10 +50,18 @@ love_plot <- function(equivalence, signed = FALSE) {
     "Absolute standardized effect size"
   }
 
+  # `.data` is the rlang pronoun (imported); lintr's usage linter flags it as a
+  # false positive, so it is silenced for this block.
+  # nolint start: object_usage_linter.
   p <- ggplot2::ggplot(
     df,
-    ggplot2::aes(x = plot_value, y = covariate, colour = wwc_category)
+    ggplot2::aes(
+      x = .data[["plot_value"]],
+      y = .data[["covariate"]],
+      colour = .data[["wwc_category"]]
+    )
   ) +
+    # nolint end
     ggplot2::geom_vline(
       xintercept = thresholds, linetype = "dashed", colour = "grey60"
     )
