@@ -1,0 +1,66 @@
+# Getting started with baselinr
+
+``` r
+
+library(baselinr)
+```
+
+## The problem
+
+Every quasi-experimental impact study in education has to answer the
+same question before anyone looks at outcomes: *were the treatment and
+comparison groups similar enough at baseline?* The What Works
+Clearinghouse (WWC) sets the de facto standard for this in education
+research:
+
+- a covariate with a standardized mean difference (Hedges’ g) of **0.05
+  or less** satisfies baseline equivalence on its own;
+- between **0.05 and 0.25**, equivalence holds only if the covariate is
+  statistically adjusted for in the impact model;
+- **above 0.25**, the covariate cannot establish equivalence.
+
+`baselinr` computes those effect sizes and categories so the baseline
+table is not something you assemble by hand for every report.
+
+## A worked example
+
+``` r
+
+study <- data.frame(
+  treat = c(1, 1, 1, 0, 0, 0),
+  pretest = c(5, 6, 7, 4, 5, 6)
+)
+
+baseline_equivalence(study, treatment = "treat")
+#>   covariate n_treatment n_comparison mean_treatment mean_comparison
+#> 1   pretest           3            3              6               5
+#>   sd_treatment sd_comparison hedges_g  wwc_category
+#> 1            1             1      0.8 not_satisfied
+```
+
+By default, every numeric column other than the treatment indicator is
+treated as a covariate. Pass `covariates =` to control the set
+explicitly.
+
+## The building blocks
+
+[`baseline_equivalence()`](https://zl1212-ship-it.github.io/baselinr/reference/baseline_equivalence.md)
+is built from two exported helpers you can also call directly.
+
+``` r
+
+# Standardized mean difference (Hedges' g) for one covariate
+hedges_g(study$pretest, study$treat)
+#> [1] 0.8
+
+# Classify any effect size(s) into the WWC categories
+wwc_classify(c(0.03, 0.12, 0.80))
+#> [1] "satisfied"                 "satisfied_with_adjustment"
+#> [3] "not_satisfied"
+```
+
+## Scope
+
+Version 0.1.0 handles continuous covariates. Binary covariates (via the
+WWC Cox index), formatted report output, and a Love plot are on the
+roadmap — see `NEWS.md`.

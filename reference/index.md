@@ -1,0 +1,12 @@
+# Package index
+
+## Baseline equivalence
+
+Build WWC-aligned baseline equivalence tables and effect sizes.
+
+- [`baseline_equivalence()`](https://zl1212-ship-it.github.io/baselinr/reference/baseline_equivalence.md)
+  : Baseline equivalence table for an impact evaluation
+- [`hedges_g()`](https://zl1212-ship-it.github.io/baselinr/reference/hedges_g.md)
+  : Hedges' g standardized mean difference
+- [`wwc_classify()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_classify.md)
+  : Classify baseline equivalence under WWC standards
