@@ -108,8 +108,4 @@ formatted `gt` table (`gt_baseline()`). `baselinr` reports baseline-equivalence
 statistics; it does not select covariates, fit impact models, or make adequacy
 determinations on the user's behalf.
 
-# Acknowledgements
-
-<!-- DRAFT: add any funding, advisors, or contributors here, or remove. -->
-
 # References
