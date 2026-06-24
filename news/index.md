@@ -1,5 +1,19 @@
 # Changelog
 
+## baselinr 0.5.0
+
+- New
+  [`wwc_summary()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_summary.md):
+  collapse a
+  [`baseline_equivalence()`](https://zl1212-ship-it.github.io/baselinr/reference/baseline_equivalence.md)
+  table into an overall WWC verdict (`satisfied` /
+  `satisfied_with_adjustment` / `not_satisfied`) plus per-category
+  counts and the largest absolute effect size.
+- New
+  [`attrition()`](https://zl1212-ship-it.github.io/baselinr/reference/attrition.md):
+  overall and differential attrition for a two-group design — the inputs
+  to the WWC attrition standard.
+
 ## baselinr 0.4.0
 
 - New bundled dataset `tutoring`: a simulated quasi-experimental

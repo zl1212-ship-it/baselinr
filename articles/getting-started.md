@@ -92,9 +92,13 @@ gt_baseline(baseline_equivalence(study, treatment = "treat"))
 ## Scope
 
 Continuous covariates use Hedges’ g (with the WWC small-sample
-correction); binary covariates use the WWC Cox index. Visualise results
-with
-[`love_plot()`](https://zl1212-ship-it.github.io/baselinr/reference/love_plot.md)
-and format them with
+correction); binary covariates use the WWC Cox index. Collapse the table
+into an overall verdict with
+[`wwc_summary()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_summary.md),
+assess sample loss with
+[`attrition()`](https://zl1212-ship-it.github.io/baselinr/reference/attrition.md),
+visualise with
+[`love_plot()`](https://zl1212-ship-it.github.io/baselinr/reference/love_plot.md),
+and format with
 [`gt_baseline()`](https://zl1212-ship-it.github.io/baselinr/reference/gt_baseline.md).
 See `NEWS.md` for the roadmap.

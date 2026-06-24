@@ -62,6 +62,12 @@ rather than a general causal-inference framework.
   [`gt_baseline()`](https://zl1212-ship-it.github.io/baselinr/reference/gt_baseline.md)
   present that table as a Love plot of standardized effect sizes (with
   WWC threshold lines) and as a formatted `gt` table, respectively.
+- [`wwc_summary()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_summary.md)
+  collapses the table into an overall equivalence verdict, and
+  [`attrition()`](https://zl1212-ship-it.github.io/baselinr/reference/attrition.md)
+  reports overall and differential attrition — the inputs to the WWC
+  attrition standard — so the package covers both pillars of WWC
+  group-design quality.
 
 The package depends only on base R \[@rcoreteam\], is covered by unit
 tests, and ships with a worked example in its vignette.

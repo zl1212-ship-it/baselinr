@@ -12,6 +12,10 @@ Build WWC-aligned baseline equivalence tables and effect sizes.
   : Cox index for a binary covariate
 - [`wwc_classify()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_classify.md)
   : Classify baseline equivalence under WWC standards
+- [`wwc_summary()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_summary.md)
+  : Overall WWC baseline-equivalence verdict
+- [`attrition()`](https://zl1212-ship-it.github.io/baselinr/reference/attrition.md)
+  : Overall and differential attrition
 
 ## Report output
 

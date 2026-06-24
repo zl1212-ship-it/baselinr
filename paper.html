@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">baselinr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,6 +58,8 @@
 <code><a href="reference/baseline_equivalence.html">baseline_equivalence()</a></code> combines these into a one-row-per-covariate table of group sizes, summary statistics, the appropriate effect size, and WWC category, choosing Hedges’ g or the Cox index based on whether each covariate is continuous or binary.</li>
 <li>
 <code><a href="reference/love_plot.html">love_plot()</a></code> and <code><a href="reference/gt_baseline.html">gt_baseline()</a></code> present that table as a Love plot of standardized effect sizes (with WWC threshold lines) and as a formatted <code>gt</code> table, respectively.</li>
+<li>
+<code><a href="reference/wwc_summary.html">wwc_summary()</a></code> collapses the table into an overall equivalence verdict, and <code><a href="reference/attrition.html">attrition()</a></code> reports overall and differential attrition — the inputs to the WWC attrition standard — so the package covers both pillars of WWC group-design quality.</li>
 </ul><p>The package depends only on base R [@rcoreteam], is covered by unit tests, and ships with a worked example in its vignette.</p>
 </div>
 <div class="section level1">
