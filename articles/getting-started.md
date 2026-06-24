@@ -28,30 +28,39 @@ table is not something you assemble by hand for every report.
 
 study <- data.frame(
   treat = c(1, 1, 1, 0, 0, 0),
-  pretest = c(5, 6, 7, 4, 5, 6)
+  pretest = c(5, 6, 7, 4, 5, 6), # continuous -> Hedges' g
+  female = c(1, 0, 1, 0, 0, 1) # binary     -> Cox index
 )
 
 baseline_equivalence(study, treatment = "treat")
-#>   covariate n_treatment n_comparison mean_treatment mean_comparison
-#> 1   pretest           3            3              6               5
-#>   sd_treatment sd_comparison hedges_g  wwc_category
-#> 1            1             1      0.8 not_satisfied
+#>   covariate       type n_treatment n_comparison mean_treatment mean_comparison
+#> 1   pretest continuous           3            3      6.0000000       5.0000000
+#> 2    female     binary           3            3      0.6666667       0.3333333
+#>   sd_treatment sd_comparison effect_size  wwc_category
+#> 1    1.0000000     1.0000000   0.8000000 not_satisfied
+#> 2    0.5773503     0.5773503   0.8401784 not_satisfied
 ```
 
-By default, every numeric column other than the treatment indicator is
-treated as a covariate. Pass `covariates =` to control the set
-explicitly.
+By default, every numeric, logical, and factor column other than the
+treatment indicator is treated as a covariate. A covariate with exactly
+two unique values is treated as binary and summarized with the Cox
+index; other numeric covariates use Hedges’ g. Pass `covariates =` to
+control the set explicitly.
 
 ## The building blocks
 
 [`baseline_equivalence()`](https://zl1212-ship-it.github.io/baselinr/reference/baseline_equivalence.md)
-is built from two exported helpers you can also call directly.
+is built from exported helpers you can also call directly.
 
 ``` r
 
-# Standardized mean difference (Hedges' g) for one covariate
+# Standardized mean difference (Hedges' g) for a continuous covariate
 hedges_g(study$pretest, study$treat)
 #> [1] 0.8
+
+# Cox index for a binary covariate
+cox_index(study$female, study$treat)
+#> [1] 0.8401784
 
 # Classify any effect size(s) into the WWC categories
 wwc_classify(c(0.03, 0.12, 0.80))
@@ -61,6 +70,7 @@ wwc_classify(c(0.03, 0.12, 0.80))
 
 ## Scope
 
-Version 0.1.0 handles continuous covariates. Binary covariates (via the
-WWC Cox index), formatted report output, and a Love plot are on the
-roadmap — see `NEWS.md`.
+Continuous covariates use Hedges’ g (with the WWC small-sample
+correction); binary covariates use the WWC Cox index. Formatted report
+output and a Love plot of standardized effect sizes are on the roadmap —
+see `NEWS.md`.

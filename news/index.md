@@ -1,5 +1,29 @@
 # Changelog
 
+## baselinr 0.2.0
+
+- New
+  [`cox_index()`](https://zl1212-ship-it.github.io/baselinr/reference/cox_index.md):
+  WWC Cox index standardized effect size for binary (dichotomous)
+  covariates.
+- [`baseline_equivalence()`](https://zl1212-ship-it.github.io/baselinr/reference/baseline_equivalence.md)
+  now handles **binary covariates** (numeric `0/1`, logical, or
+  two-level factor) via the Cox index, in addition to continuous
+  covariates via Hedges’ g. A covariate with exactly two unique values
+  is treated as binary.
+- The output gains a `type` column (`"continuous"` / `"binary"`), and
+  the effect-size column is renamed from `hedges_g` to the
+  estimator-agnostic `effect_size` (**breaking change**). For binary
+  covariates, `mean_treatment` and `mean_comparison` report event
+  proportions.
+- The default covariate set now includes logical and factor columns, not
+  only numeric ones.
+
+### Roadmap
+
+- Formatted output for reports (`gt` / `flextable`).
+- Love plot of standardized effect sizes across covariates.
+
 ## baselinr 0.1.0
 
 Initial scaffold.
@@ -13,9 +37,3 @@ Initial scaffold.
 - [`baseline_equivalence()`](https://zl1212-ship-it.github.io/baselinr/reference/baseline_equivalence.md):
   build a report-ready baseline equivalence table for continuous
   covariates.
-
-### Roadmap
-
-- Binary covariates via the WWC Cox index.
-- Formatted output for reports (`gt` / `flextable`).
-- Love plot of standardized mean differences across covariates.

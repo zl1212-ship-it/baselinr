@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">baselinr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,6 +37,19 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.0" id="baselinr-020">baselinr 0.2.0<a class="anchor" aria-label="anchor" href="#baselinr-020"></a></h2>
+<ul><li>New <code><a href="../reference/cox_index.html">cox_index()</a></code>: WWC Cox index standardized effect size for binary (dichotomous) covariates.</li>
+<li>
+<code><a href="../reference/baseline_equivalence.html">baseline_equivalence()</a></code> now handles <strong>binary covariates</strong> (numeric <code>0/1</code>, logical, or two-level factor) via the Cox index, in addition to continuous covariates via Hedges’ g. A covariate with exactly two unique values is treated as binary.</li>
+<li>The output gains a <code>type</code> column (<code>"continuous"</code> / <code>"binary"</code>), and the effect-size column is renamed from <code>hedges_g</code> to the estimator-agnostic <code>effect_size</code> (<strong>breaking change</strong>). For binary covariates, <code>mean_treatment</code> and <code>mean_comparison</code> report event proportions.</li>
+<li>The default covariate set now includes logical and factor columns, not only numeric ones.</li>
+</ul><div class="section level3">
+<h3 id="roadmap-0-2-0">Roadmap<a class="anchor" aria-label="anchor" href="#roadmap-0-2-0"></a></h3>
+<ul><li>Formatted output for reports (<code>gt</code> / <code>flextable</code>).</li>
+<li>Love plot of standardized effect sizes across covariates.</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="baselinr-010">baselinr 0.1.0<a class="anchor" aria-label="anchor" href="#baselinr-010"></a></h2>
 <p>Initial scaffold.</p>
 <ul><li>
@@ -45,13 +58,7 @@
 <code><a href="../reference/wwc_classify.html">wwc_classify()</a></code>: classify standardized mean differences into the three WWC baseline-equivalence categories.</li>
 <li>
 <code><a href="../reference/baseline_equivalence.html">baseline_equivalence()</a></code>: build a report-ready baseline equivalence table for continuous covariates.</li>
-</ul><div class="section level3">
-<h3 id="roadmap-0-1-0">Roadmap<a class="anchor" aria-label="anchor" href="#roadmap-0-1-0"></a></h3>
-<ul><li>Binary covariates via the WWC Cox index.</li>
-<li>Formatted output for reports (<code>gt</code> / <code>flextable</code>).</li>
-<li>Love plot of standardized mean differences across covariates.</li>
 </ul></div>
-</div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
