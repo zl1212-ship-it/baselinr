@@ -1,3 +1,13 @@
+# baselinr 0.3.0
+
+* New `love_plot()`: a Love plot of standardized effect sizes across covariates,
+  with WWC threshold reference lines and points coloured by category (requires
+  `ggplot2`).
+* New `gt_baseline()`: render a baseline equivalence table as a formatted `gt`
+  table with readable labels and rounded statistics (requires `gt`).
+* `ggplot2` and `gt` added to Suggests; both functions error gracefully if the
+  package is not installed.
+
 # baselinr 0.2.0
 
 * New `cox_index()`: WWC Cox index standardized effect size for binary

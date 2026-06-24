@@ -69,6 +69,9 @@ framework.
   group sizes, summary statistics, the appropriate effect size, and WWC
   category, choosing Hedges' g or the Cox index based on whether each covariate
   is continuous or binary.
+- `love_plot()` and `gt_baseline()` present that table as a Love plot of
+  standardized effect sizes (with WWC threshold lines) and as a formatted `gt`
+  table, respectively.
 
 The package depends only on base R [@rcoreteam], is covered by unit tests, and
 ships with a worked example in its vignette.
@@ -96,8 +99,8 @@ baseline_equivalence(study, treatment = "treat")
 # Scope and limitations
 
 `baselinr` handles continuous covariates (Hedges' g) and binary covariates
-(the Cox index). Formatted report output and a Love plot of standardized effect
-sizes across covariates are planned. `baselinr` reports baseline-equivalence
+(the Cox index), and presents results as a Love plot (`love_plot()`) or a
+formatted `gt` table (`gt_baseline()`). `baselinr` reports baseline-equivalence
 statistics; it does not select covariates, fit impact models, or make adequacy
 determinations on the user's behalf.
 
