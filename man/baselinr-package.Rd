@@ -13,7 +13,21 @@ a set of covariates, and reports — for each covariate — the appropriate
 standardized effect size (Hedges' g for continuous covariates, the Cox index
 for binary covariates) together with the WWC baseline-equivalence category.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/zl1212-ship-it/baselinr}
+  \item Report bugs at \url{https://github.com/zl1212-ship-it/baselinr/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Your Name \email{zl1212@uw.edu}
+
+Authors:
+\itemize{
+  \item Your Name \email{zl1212@uw.edu}
+}
+
 }
 \keyword{internal}

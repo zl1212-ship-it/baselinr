@@ -11,8 +11,8 @@ hedges_g(x, treatment, na.rm = TRUE)
 
 \item{treatment}{Vector the same length as \code{x} identifying group
 membership. Must have exactly two unique non-missing values. The larger
-value (e.g. \code{1}, \code{TRUE}, or the second sorted level) is treated as
-the treatment group; the other as the comparison group.}
+value (e.g. \code{1}, \code{TRUE}, or the second sorted level) is treated as the
+treatment group; the other as the comparison group.}
 
 \item{na.rm}{Logical; drop rows where \code{x} or \code{treatment} is \code{NA}.
 Default \code{TRUE}.}
