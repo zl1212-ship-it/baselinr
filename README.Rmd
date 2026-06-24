@@ -62,12 +62,27 @@ The WWC categories are:
 | `0.05`–`0.25` | `satisfied_with_adjustment` | Holds only if the covariate is adjusted for in the impact model. |
 | `> 0.25` | `not_satisfied` | Cannot establish equivalence. |
 
+## Visualise and format
+
+`love_plot()` shows every covariate's standardized effect size against the WWC
+thresholds (requires `ggplot2`):
+
+```{r loveplot, fig.alt = "Love plot of standardized effect sizes by covariate", fig.width = 7, fig.height = 2.6, dpi = 150}
+love_plot(baseline_equivalence(study, treatment = "treat"))
+```
+
+`gt_baseline()` renders the same table as a formatted `gt` table for reports and
+Quarto/HTML (requires `gt`):
+
+```r
+gt_baseline(baseline_equivalence(study, treatment = "treat"))
+```
+
 ## Scope
 
 Continuous covariates use Hedges' g (with the WWC small-sample correction);
 binary covariates (numeric `0/1`, logical, or two-level factor) use the WWC Cox
-index. Formatted report output (`gt` / `flextable`) and a Love plot are on the
-roadmap — see `NEWS.md`.
+index. See `NEWS.md` for the roadmap.
 
 ## License
 

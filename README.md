@@ -1,24 +1,30 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file, then run devtools::build_readme(). -->
 
 # baselinr
 
 <!-- badges: start -->
+
 <!-- DRAFT: replace zl1212-ship-it if you move the repo. -->
+
 [![R-CMD-check](https://github.com/zl1212-ship-it/baselinr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/zl1212-ship-it/baselinr/actions/workflows/R-CMD-check.yaml)
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-`baselinr` builds report-ready **baseline equivalence** tables for impact
-evaluations in education research, following the conventions of the
-[What Works Clearinghouse (WWC)](https://ies.ed.gov/ncee/wwc/). Given a treatment
-indicator and a set of covariates, it reports the appropriate standardized effect
-size — **Hedges' g** for continuous covariates, the **Cox index** for binary
-ones — and the WWC equivalence category for each.
+`baselinr` builds report-ready **baseline equivalence** tables for
+impact evaluations in education research, following the conventions of
+the [What Works Clearinghouse (WWC)](https://ies.ed.gov/ncee/wwc/).
+Given a treatment indicator and a set of covariates, it reports the
+appropriate standardized effect size — **Hedges’ g** for continuous
+covariates, the **Cox index** for binary ones — and the WWC equivalence
+category for each.
 
-It is a thin, education-specific reporting layer. For general-purpose covariate
-balance assessment, see [`cobalt`](https://ngreifer.github.io/cobalt/);
-`baselinr` focuses narrowly on the WWC equivalence categories that education
-evaluation reports are required to state.
+It is a thin, education-specific reporting layer. For general-purpose
+covariate balance assessment, see
+[`cobalt`](https://ngreifer.github.io/cobalt/); `baselinr` focuses
+narrowly on the WWC equivalence categories that education evaluation
+reports are required to state.
 
 ## Installation
 
@@ -41,25 +47,42 @@ study <- data.frame(
 knitr::kable(baseline_equivalence(study, treatment = "treat"), digits = 3)
 ```
 
-| covariate | type       | n_treatment | n_comparison | mean_treatment | mean_comparison | sd_treatment | sd_comparison | effect_size | wwc_category  |
-|:----------|:-----------|------------:|-------------:|---------------:|----------------:|-------------:|--------------:|------------:|:--------------|
-| pretest   | continuous |           3 |            3 |          6.000 |           5.000 |        1.000 |         1.000 |       0.800 | not_satisfied |
-| female    | binary     |           3 |            3 |          0.667 |           0.333 |        0.577 |         0.577 |       0.840 | not_satisfied |
+| covariate | type | n_treatment | n_comparison | mean_treatment | mean_comparison | sd_treatment | sd_comparison | effect_size | wwc_category |
+|:---|:---|---:|---:|---:|---:|---:|---:|---:|:---|
+| pretest | continuous | 3 | 3 | 6.000 | 5.000 | 1.000 | 1.000 | 0.80 | not_satisfied |
+| female | binary | 3 | 3 | 0.667 | 0.333 | 0.577 | 0.577 | 0.84 | not_satisfied |
 
 The WWC categories are:
 
 | Effect size (absolute) | Category | Meaning |
-|---|---|---|
+|----|----|----|
 | `<= 0.05` | `satisfied` | Baseline equivalence holds. |
 | `0.05`–`0.25` | `satisfied_with_adjustment` | Holds only if the covariate is adjusted for in the impact model. |
 | `> 0.25` | `not_satisfied` | Cannot establish equivalence. |
 
+## Visualise and format
+
+`love_plot()` shows every covariate’s standardized effect size against
+the WWC thresholds (requires `ggplot2`):
+
+``` r
+love_plot(baseline_equivalence(study, treatment = "treat"))
+```
+
+<img src="man/figures/README-loveplot-1.png" alt="Love plot of standardized effect sizes by covariate" width="100%" />
+
+`gt_baseline()` renders the same table as a formatted `gt` table for
+reports and Quarto/HTML (requires `gt`):
+
+``` r
+gt_baseline(baseline_equivalence(study, treatment = "treat"))
+```
+
 ## Scope
 
-Continuous covariates use Hedges' g (with the WWC small-sample correction);
-binary covariates (numeric `0/1`, logical, or two-level factor) use the WWC Cox
-index. Formatted report output (`gt` / `flextable`) and a Love plot are on the
-roadmap — see `NEWS.md`.
+Continuous covariates use Hedges’ g (with the WWC small-sample
+correction); binary covariates (numeric `0/1`, logical, or two-level
+factor) use the WWC Cox index. See `NEWS.md` for the roadmap.
 
 ## License
 

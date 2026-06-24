@@ -1,6 +1,6 @@
 Package: baselinr
 Title: WWC-Aligned Baseline Equivalence Tables for Education Impact Evaluations
-Version: 0.2.0
+Version: 0.3.0
 Authors@R:
     person("Your", "Name", email = "zl1212@uw.edu", role = c("aut", "cre"))
 Description: Produces report-ready baseline equivalence tables for impact
@@ -14,8 +14,11 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Imports:
-    stats
+    stats,
+    utils
 Suggests:
+    ggplot2,
+    gt,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)

@@ -67,8 +67,23 @@ cox_index(study$female, study$treat)
 wwc_classify(c(0.03, 0.12, 0.80))
 ```
 
+## Visualise and format
+
+A Love plot shows each covariate's standardized effect size against the WWC
+thresholds (0.05 and 0.25), coloured by category:
+
+```{r loveplot, eval = requireNamespace("ggplot2", quietly = TRUE), fig.width = 7, fig.height = 2.6}
+love_plot(baseline_equivalence(study, treatment = "treat"))
+```
+
+For a report-ready table, `gt_baseline()` returns a formatted `gt` table:
+
+```{r eval = FALSE}
+gt_baseline(baseline_equivalence(study, treatment = "treat"))
+```
+
 ## Scope
 
 Continuous covariates use Hedges' g (with the WWC small-sample correction);
-binary covariates use the WWC Cox index. Formatted report output and a Love plot
-of standardized effect sizes are on the roadmap — see `NEWS.md`.
+binary covariates use the WWC Cox index. Visualise results with `love_plot()`
+and format them with `gt_baseline()`. See `NEWS.md` for the roadmap.
