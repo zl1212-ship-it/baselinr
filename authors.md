@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/zl1212-ship-it/baselinr/blob/v0.5.0/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/zl1212-ship-it/baselinr/blob/main/DESCRIPTION)
 
 Liang Y (2026). *baselinr: WWC-Aligned Baseline Equivalence Tables for
 Education Impact Evaluations*. R package version 0.5.0,
