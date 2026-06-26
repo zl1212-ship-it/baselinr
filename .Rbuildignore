@@ -12,3 +12,5 @@
 ^CONTRIBUTING\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^CRAN-SUBMISSION$
+^CITATION\.cff$
