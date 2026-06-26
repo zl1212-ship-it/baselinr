@@ -12,6 +12,14 @@ version: 0.5.0
 license: MIT
 repository-code: "https://github.com/zl1212-ship-it/baselinr"
 url: "https://zl1212-ship-it.github.io/baselinr/"
+doi: 10.5281/zenodo.20937887
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.20937887
+    description: "Concept DOI (all versions)"
+  - type: doi
+    value: 10.5281/zenodo.20937886
+    description: "Versioned DOI for v0.5.0"
 date-released: "2026-06-26"
 keywords:
   - impact evaluation
