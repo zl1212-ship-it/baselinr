@@ -10,6 +10,7 @@
 [![R-CMD-check](https://github.com/zl1212-ship-it/baselinr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/zl1212-ship-it/baselinr/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![DOI](https://zenodo.org/badge/1279288173.svg)](https://doi.org/10.5281/zenodo.20937887)
 <!-- badges: end -->
 
 `baselinr` builds report-ready **baseline equivalence** tables for
