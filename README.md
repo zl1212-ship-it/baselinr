@@ -9,7 +9,7 @@
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/baselinr)](https://CRAN.R-project.org/package=baselinr)
 [![R-CMD-check](https://github.com/zl1212-ship-it/baselinr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/zl1212-ship-it/baselinr/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![DOI](https://zenodo.org/badge/1279288173.svg)](https://doi.org/10.5281/zenodo.20937887)
 <!-- badges: end -->
 
