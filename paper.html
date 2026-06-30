@@ -40,7 +40,7 @@
 
 <div id="summary" class="section level1">
 
-<p>In quasi-experimental and randomized impact evaluations of education programs, analysts must demonstrate that treatment and comparison groups were similar at baseline before any claim about program effects is credible. In U.S. education research, the What Works Clearinghouse (WWC) sets the de facto standard for this judgment: each baseline covariate is summarized by a standardized mean difference (Hedges’ g) and classified into one of three categories that determine whether and how the covariate must be handled in the impact model [@wwc2022]. <code>baselinr</code> is a small R package that automates this specific, repetitive task. Given a data frame, a treatment indicator, and a set of covariates, it returns a report-ready table containing each group’s sample size and summary statistics; the appropriate standardized effect size — Hedges’ g (with the WWC small-sample correction) for continuous covariates and the Cox index for binary covariates; and the corresponding WWC baseline-equivalence category.</p>
+<p>In quasi-experimental and randomized impact evaluations of education programs, analysts must demonstrate that treatment and comparison groups were similar at baseline before any claim about program effects is credible. In U.S. education research, the What Works Clearinghouse (WWC) sets the de facto standard for this judgment: each baseline covariate is summarized by a standardized mean difference (Hedges’ g) and classified into one of three categories that determine whether and how the covariate must be handled in the impact model [@wwc2022]. <code>baselinr</code> is a small R package that automates this specific, repetitive task. Given a data frame, a treatment indicator, and a set of covariates, it returns a report-ready table containing each group’s sample size and summary statistics; the appropriate standardized effect size, Hedges’ g (with the WWC small-sample correction) for continuous covariates and the Cox index for binary covariates; and the corresponding WWC baseline-equivalence category.</p>
 </div>
 <div class="section level1">
 <h1 id="statement-of-need">Statement of need<a class="anchor" aria-label="anchor" href="#statement-of-need"></a></h1>
@@ -59,7 +59,7 @@
 <li>
 <code><a href="reference/love_plot.html">love_plot()</a></code> and <code><a href="reference/gt_baseline.html">gt_baseline()</a></code> present that table as a Love plot of standardized effect sizes (with WWC threshold lines) and as a formatted <code>gt</code> table, respectively.</li>
 <li>
-<code><a href="reference/wwc_summary.html">wwc_summary()</a></code> collapses the table into an overall equivalence verdict, and <code><a href="reference/attrition.html">attrition()</a></code> reports overall and differential attrition — the inputs to the WWC attrition standard — so the package covers both pillars of WWC group-design quality.</li>
+<code><a href="reference/wwc_summary.html">wwc_summary()</a></code> collapses the table into an overall equivalence verdict, and <code><a href="reference/attrition.html">attrition()</a></code> reports overall and differential attrition, the inputs to the WWC attrition standard, so the package covers both pillars of WWC group-design quality.</li>
 </ul><p>The package depends only on base R [@rcoreteam], is covered by unit tests, and ships with a worked example in its vignette.</p>
 </div>
 <div class="section level1">
