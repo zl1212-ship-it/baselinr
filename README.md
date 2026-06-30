@@ -17,9 +17,9 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 impact evaluations in education research, following the conventions of
 the [What Works Clearinghouse (WWC)](https://ies.ed.gov/ncee/wwc/).
 Given a treatment indicator and a set of covariates, it reports the
-appropriate standardized effect size — **Hedges’ g** for continuous
-covariates, the **Cox index** for binary ones — and the WWC equivalence
-category for each.
+appropriate standardized effect size for each covariate, **Hedges’ g**
+for continuous covariates and the **Cox index** for binary ones, together
+with the WWC equivalence category.
 
 It is a thin, education-specific reporting layer. For general-purpose
 covariate balance assessment, see
