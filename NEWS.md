@@ -3,7 +3,7 @@
 * New `wwc_summary()`: collapse a `baseline_equivalence()` table into an overall
   WWC verdict (`satisfied` / `satisfied_with_adjustment` / `not_satisfied`) plus
   per-category counts and the largest absolute effect size.
-* New `attrition()`: overall and differential attrition for a two-group design —
+* New `attrition()`: overall and differential attrition for a two-group design,
   the inputs to the WWC attrition standard.
 
 # baselinr 0.4.0

@@ -12,7 +12,7 @@ helpful thing you can include.
 ## Requesting features or support
 
 Feature ideas and usage questions are welcome as
-[issues](https://github.com/zl1212-ship-it/baselinr/issues) — please label them
+[issues](https://github.com/zl1212-ship-it/baselinr/issues). Please label them
 clearly (e.g. "feature" or "question").
 
 ## Contributing code
