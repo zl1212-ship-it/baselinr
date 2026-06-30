@@ -30,7 +30,7 @@ determine whether and how the covariate must be handled in the impact model
 [@wwc2022]. `baselinr` is a small R package that automates this specific,
 repetitive task. Given a data frame, a treatment indicator, and a set of
 covariates, it returns a report-ready table containing each group's sample size
-and summary statistics; the appropriate standardized effect size — Hedges' g
+and summary statistics; the appropriate standardized effect size, Hedges' g
 (with the WWC small-sample correction) for continuous covariates and the Cox
 index for binary covariates; and the corresponding WWC baseline-equivalence
 category.
@@ -73,8 +73,8 @@ framework.
   standardized effect sizes (with WWC threshold lines) and as a formatted `gt`
   table, respectively.
 - `wwc_summary()` collapses the table into an overall equivalence verdict, and
-  `attrition()` reports overall and differential attrition — the inputs to the
-  WWC attrition standard — so the package covers both pillars of WWC group-design
+  `attrition()` reports overall and differential attrition, the inputs to the
+  WWC attrition standard, so the package covers both pillars of WWC group-design
   quality.
 
 The package depends only on base R [@rcoreteam], is covered by unit tests, and
