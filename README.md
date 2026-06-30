@@ -5,8 +5,8 @@
 
 <!-- badges: start -->
 
-<!-- DRAFT: replace zl1212-ship-it if you move the repo. -->
-
+[![CRAN status](https://www.r-pkg.org/badges/version/baselinr)](https://CRAN.R-project.org/package=baselinr)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/baselinr)](https://CRAN.R-project.org/package=baselinr)
 [![R-CMD-check](https://github.com/zl1212-ship-it/baselinr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/zl1212-ship-it/baselinr/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
@@ -28,6 +28,14 @@ narrowly on the WWC equivalence categories that education evaluation
 reports are required to state.
 
 ## Installation
+
+Install the released version from CRAN:
+
+``` r
+install.packages("baselinr")
+```
+
+Or the development version from GitHub:
 
 ``` r
 # install.packages("remotes")
