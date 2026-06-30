@@ -1,0 +1,12 @@
+year <- "2026"
+ver  <- if (exists("meta") && !is.null(meta$Version)) meta$Version else "0.5.0"
+
+bibentry(
+  bibtype = "Manual",
+  title   = "{baselinr}: WWC-Aligned Baseline Equivalence Tables for Education Impact Evaluations",
+  author  = person("Yuxia", "Liang", comment = c(ORCID = "0009-0008-6489-3836")),
+  year    = year,
+  note    = paste("R package version", ver),
+  doi     = "10.5281/zenodo.20937887",
+  url     = "https://CRAN.R-project.org/package=baselinr"
+)
