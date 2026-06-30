@@ -85,14 +85,14 @@ program (<code>treat = 1</code>) and 200 who did not
 (<code>treat = 0</code>), with baseline covariates and a post-program
 <code>posttest</code>.</p>
 <div class="section level2">
-<h2 id="step-1-assess-baseline-equivalence-before-looking-at-the-outcome">Step 1: assess baseline equivalence — <em>before</em> looking at the
+<h2 id="step-1-assess-baseline-equivalence-before-looking-at-the-outcome">Step 1: assess baseline equivalence, <em>before</em> looking at the
 outcome<a class="anchor" aria-label="anchor" href="#step-1-assess-baseline-equivalence-before-looking-at-the-outcome"></a>
 </h2>
 <p>The credibility of any later effect estimate rests on whether the two
 groups were comparable at baseline. We pass the
-<strong>baseline</strong> covariates explicitly — crucially
-<strong>not</strong> <code>posttest</code>, which is an outcome, not a
-baseline covariate.</p>
+<strong>baseline</strong> covariates explicitly. We do
+<strong>not</strong> include <code>posttest</code>, which is an outcome,
+not a baseline covariate.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">baseline_covs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pretest"</span>, <span class="st">"attendance"</span>, <span class="st">"age"</span>, <span class="st">"female"</span>, <span class="st">"frpl"</span>, <span class="st">"ell"</span><span class="op">)</span></span>
 <span></span>
@@ -221,15 +221,15 @@ categories:</p>
 <span><span class="co">#&gt; 6        ell  0.38544774             not_satisfied</span></span></code></pre></div>
 <ul>
 <li>
-<strong><code>satisfied</code></strong> — the groups are equivalent
+<strong><code>satisfied</code></strong>: the groups are equivalent
 on this covariate; nothing more to do.</li>
 <li>
-<strong><code>satisfied_with_adjustment</code></strong> —
-equivalence holds <em>only if</em> you statistically adjust for this
-covariate in the impact model. This is a commitment, not a pass: those
-covariates <strong>must</strong> appear in the model.</li>
+<strong><code>satisfied_with_adjustment</code></strong>: equivalence
+holds <em>only if</em> you statistically adjust for this covariate in
+the impact model. This is a commitment, not a pass: those covariates
+<strong>must</strong> appear in the model.</li>
 <li>
-<strong><code>not_satisfied</code></strong> — this covariate cannot
+<strong><code>not_satisfied</code></strong>: this covariate cannot
 establish equivalence even with adjustment. It’s a threat to the study’s
 credibility that you have to confront, not bury.</li>
 </ul>

@@ -22,11 +22,11 @@ students who received a tutoring program (`treat = 1`) and 200 who did
 not (`treat = 0`), with baseline covariates and a post-program
 `posttest`.
 
-## Step 1: assess baseline equivalence — *before* looking at the outcome
+## Step 1: assess baseline equivalence, *before* looking at the outcome
 
 The credibility of any later effect estimate rests on whether the two
 groups were comparable at baseline. We pass the **baseline** covariates
-explicitly — crucially **not** `posttest`, which is an outcome, not a
+explicitly. We do **not** include `posttest`, which is an outcome, not a
 baseline covariate.
 
 ``` r
@@ -69,12 +69,12 @@ equiv[, c("covariate", "effect_size", "wwc_category")]
 #> 6        ell  0.38544774             not_satisfied
 ```
 
-- **`satisfied`** — the groups are equivalent on this covariate; nothing
+- **`satisfied`**: the groups are equivalent on this covariate; nothing
   more to do.
-- **`satisfied_with_adjustment`** — equivalence holds *only if* you
+- **`satisfied_with_adjustment`**: equivalence holds *only if* you
   statistically adjust for this covariate in the impact model. This is a
   commitment, not a pass: those covariates **must** appear in the model.
-- **`not_satisfied`** — this covariate cannot establish equivalence even
+- **`not_satisfied`**: this covariate cannot establish equivalence even
   with adjustment. It’s a threat to the study’s credibility that you
   have to confront, not bury.
 

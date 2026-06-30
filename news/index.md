@@ -13,7 +13,7 @@ CRAN release: 2026-06-30
   counts and the largest absolute effect size.
 - New
   [`attrition()`](https://zl1212-ship-it.github.io/baselinr/reference/attrition.md):
-  overall and differential attrition for a two-group design — the inputs
+  overall and differential attrition for a two-group design, the inputs
   to the WWC attrition standard.
 
 ## baselinr 0.4.0
