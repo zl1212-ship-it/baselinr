@@ -57,21 +57,24 @@
 <div class="page-header"><h1 id="baselinr">baselinr<a class="anchor" aria-label="anchor" href="#baselinr"></a>
 </h1></div>
 <!-- badges: start -->
-<!-- DRAFT: replace zl1212-ship-it if you move the repo. -->
 
 <p><code>baselinr</code> builds report-ready <strong>baseline equivalence</strong> tables for impact evaluations in education research, following the conventions of the <a href="https://ies.ed.gov/ncee/wwc/" class="external-link">What Works Clearinghouse (WWC)</a>. Given a treatment indicator and a set of covariates, it reports the appropriate standardized effect size — <strong>Hedges’ g</strong> for continuous covariates, the <strong>Cox index</strong> for binary ones — and the WWC equivalence category for each.</p>
 <p>It is a thin, education-specific reporting layer. For general-purpose covariate balance assessment, see <a href="https://ngreifer.github.io/cobalt/" class="external-link"><code>cobalt</code></a>; <code>baselinr</code> focuses narrowly on the WWC equivalence categories that education evaluation reports are required to state.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
+<p>Install the released version from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"baselinr"</span><span class="op">)</span></span></code></pre></div>
+<p>Or the development version from GitHub:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"zl1212-ship-it/baselinr"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/zl1212-ship-it/baselinr" class="external-link">baselinr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">study</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
@@ -170,11 +173,11 @@
 <h2 id="visualise-and-format">Visualise and format<a class="anchor" aria-label="anchor" href="#visualise-and-format"></a>
 </h2>
 <p><code><a href="reference/love_plot.html">love_plot()</a></code> shows the standardized effect size of every covariate against the WWC thresholds (requires <code>ggplot2</code>):</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/love_plot.html">love_plot</a></span><span class="op">(</span><span class="fu"><a href="reference/baseline_equivalence.html">baseline_equivalence</a></span><span class="op">(</span><span class="va">study</span>, treatment <span class="op">=</span> <span class="st">"treat"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-loveplot-1.png" alt="Love plot of standardized effect sizes by covariate" width="100%"></p>
 <p><code><a href="reference/gt_baseline.html">gt_baseline()</a></code> renders the same table as a formatted <code>gt</code> table for reports and Quarto/HTML (requires <code>gt</code>):</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/gt_baseline.html">gt_baseline</a></span><span class="op">(</span><span class="fu"><a href="reference/baseline_equivalence.html">baseline_equivalence</a></span><span class="op">(</span><span class="va">study</span>, treatment <span class="op">=</span> <span class="st">"treat"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -228,6 +231,8 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
+<li><a href="https://CRAN.R-project.org/package=baselinr" class="external-link"><img src="https://www.r-pkg.org/badges/version/baselinr" alt="CRAN status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=baselinr" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/baselinr" alt="CRAN downloads"></a></li>
 <li><a href="https://github.com/zl1212-ship-it/baselinr/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/zl1212-ship-it/baselinr/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 <li><a href="https://doi.org/10.5281/zenodo.20937887" class="external-link"><img src="https://zenodo.org/badge/1279288173.svg" alt="DOI"></a></li>

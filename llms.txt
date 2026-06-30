@@ -16,6 +16,15 @@ reports are required to state.
 
 ## Installation
 
+Install the released version from CRAN:
+
+``` r
+
+install.packages("baselinr")
+```
+
+Or the development version from GitHub:
+
 ``` r
 
 # install.packages("remotes")

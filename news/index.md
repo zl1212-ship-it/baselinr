@@ -2,6 +2,8 @@
 
 ## baselinr 0.5.0
 
+CRAN release: 2026-06-30
+
 - New
   [`wwc_summary()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_summary.md):
   collapse a
