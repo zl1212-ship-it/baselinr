@@ -1,5 +1,19 @@
 # Changelog
 
+## baselinr 0.5.0.9000 (development version)
+
+- [`hedges_g()`](https://zl1212-ship-it.github.io/baselinr/reference/hedges_g.md)
+  and
+  [`cox_index()`](https://zl1212-ship-it.github.io/baselinr/reference/cox_index.md)
+  now handle missing values consistently when `na.rm = FALSE`: both
+  reject missing input up front with the message “Missing values
+  present; set `na.rm = TRUE` to drop them.” Previously
+  [`hedges_g()`](https://zl1212-ship-it.github.io/baselinr/reference/hedges_g.md)
+  raised an opaque internal error while
+  [`cox_index()`](https://zl1212-ship-it.github.io/baselinr/reference/cox_index.md)
+  silently returned `NA`
+  ([\#12](https://github.com/zl1212-ship-it/baselinr/issues/12)).
+
 ## baselinr 0.5.0
 
 CRAN release: 2026-06-30

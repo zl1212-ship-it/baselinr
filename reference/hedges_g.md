@@ -27,6 +27,8 @@ hedges_g(x, treatment, na.rm = TRUE)
 - na.rm:
 
   Logical; drop rows where `x` or `treatment` is `NA`. Default `TRUE`.
+  When `FALSE`, missing values are not allowed: the function errors if
+  any are present.
 
 ## Value
 
