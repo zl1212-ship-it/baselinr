@@ -15,7 +15,8 @@ vector with exactly two unique non-missing values). The larger value (e.g.
 exactly two unique non-missing values (see \code{\link[=hedges_g]{hedges_g()}}).}
 
 \item{na.rm}{Logical; drop rows where \code{x} or \code{treatment} is \code{NA}.
-Default \code{TRUE}.}
+Default \code{TRUE}. When \code{FALSE}, missing values are not allowed: the function
+errors if any are present.}
 }
 \value{
 A single numeric value: the Cox index. Returns \code{NA} (with a warning)

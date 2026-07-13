@@ -15,7 +15,8 @@ value (e.g. \code{1}, \code{TRUE}, or the second sorted level) is treated as the
 treatment group; the other as the comparison group.}
 
 \item{na.rm}{Logical; drop rows where \code{x} or \code{treatment} is \code{NA}.
-Default \code{TRUE}.}
+Default \code{TRUE}. When \code{FALSE}, missing values are not allowed: the function
+errors if any are present.}
 }
 \value{
 A single numeric value: Hedges' g. Positive when the treatment
