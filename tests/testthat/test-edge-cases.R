@@ -22,13 +22,11 @@ test_that("hedges_g handles extremely imbalanced group sizes", {
 })
 
 test_that("hedges_g with na.rm = FALSE errors on missing data", {
-  # Documents current behavior: NAs are only handled when na.rm = TRUE. With
-  # na.rm = FALSE a missing value propagates into the pooled SD and errors.
-  # NOTE: cox_index returns NA in the same situation (see below) -- tracked as
-  # a consistency follow-up.
+  # With na.rm = FALSE, missing values are rejected up front with a clear
+  # message, matching cox_index below (see issue #12).
   x <- c(5, 6, 7, NA, 4, 5, 6)
   g <- c(1, 1, 1, 1, 0, 0, 0)
-  expect_error(hedges_g(x, g, na.rm = FALSE))
+  expect_error(hedges_g(x, g, na.rm = FALSE), "Missing values present")
 })
 
 test_that("hedges_g errors when all data is missing", {
@@ -53,12 +51,12 @@ test_that("cox_index returns NA when the comparison proportion is zero", {
   expect_true(is.na(r))
 })
 
-test_that("cox_index with na.rm = FALSE returns NA on missing data", {
-  # Missing values flow into the proportions and yield NA (no error), unlike
-  # hedges_g above -- the two functions differ here.
+test_that("cox_index with na.rm = FALSE errors on missing data", {
+  # With na.rm = FALSE, missing values are rejected up front with a clear
+  # message, matching hedges_g above (see issue #12).
   x <- c(1, 1, 0, NA, 1, 0, 0, 1)
   g <- c(1, 1, 1, 1, 0, 0, 0, 0)
-  expect_true(is.na(cox_index(x, g, na.rm = FALSE)))
+  expect_error(cox_index(x, g, na.rm = FALSE), "Missing values present")
 })
 
 # ---- wwc_classify -----------------------------------------------------------

@@ -1,3 +1,11 @@
+# baselinr 0.5.0.9000 (development version)
+
+* `hedges_g()` and `cox_index()` now handle missing values consistently when
+  `na.rm = FALSE`: both reject missing input up front with the message
+  "Missing values present; set `na.rm = TRUE` to drop them." Previously
+  `hedges_g()` raised an opaque internal error while `cox_index()` silently
+  returned `NA` (#12).
+
 # baselinr 0.5.0
 
 * New `wwc_summary()`: collapse a `baseline_equivalence()` table into an overall

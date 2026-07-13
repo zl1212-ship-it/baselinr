@@ -26,7 +26,8 @@
 #'   value (e.g. `1`, `TRUE`, or the second sorted level) is treated as the
 #'   treatment group; the other as the comparison group.
 #' @param na.rm Logical; drop rows where `x` or `treatment` is `NA`.
-#'   Default `TRUE`.
+#'   Default `TRUE`. When `FALSE`, missing values are not allowed: the function
+#'   errors if any are present.
 #'
 #' @return A single numeric value: Hedges' g. Positive when the treatment
 #'   group mean exceeds the comparison group mean.
@@ -52,6 +53,10 @@ hedges_g <- function(x, treatment, na.rm = TRUE) {
     keep <- !is.na(x) & !is.na(treatment)
     x <- x[keep]
     treatment <- treatment[keep]
+  } else if (anyNA(x) || anyNA(treatment)) {
+    stop("Missing values present; set `na.rm = TRUE` to drop them.",
+      call. = FALSE
+    )
   }
   levs <- sort(unique(treatment))
   if (length(levs) != 2L) {
@@ -97,7 +102,8 @@ hedges_g <- function(x, treatment, na.rm = TRUE) {
 #' @param treatment Vector the same length as `x` identifying group membership;
 #'   exactly two unique non-missing values (see [hedges_g()]).
 #' @param na.rm Logical; drop rows where `x` or `treatment` is `NA`.
-#'   Default `TRUE`.
+#'   Default `TRUE`. When `FALSE`, missing values are not allowed: the function
+#'   errors if any are present.
 #'
 #' @return A single numeric value: the Cox index. Returns `NA` (with a warning)
 #'   when a group proportion is exactly 0 or 1, where the index is undefined.
@@ -119,6 +125,10 @@ cox_index <- function(x, treatment, na.rm = TRUE) {
     keep <- !is.na(x) & !is.na(treatment)
     x <- x[keep]
     treatment <- treatment[keep]
+  } else if (anyNA(x) || anyNA(treatment)) {
+    stop("Missing values present; set `na.rm = TRUE` to drop them.",
+      call. = FALSE
+    )
   }
   x_levs <- sort(unique(x))
   if (length(x_levs) != 2L) {
