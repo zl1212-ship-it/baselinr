@@ -93,6 +93,13 @@ collapses the table into an overall verdict, and
 reports overall and differential attrition. See `NEWS.md` for the
 roadmap.
 
+## Citation
+
+If you use baselinr in your work, please cite it: run
+`citation("baselinr")` in R for the full reference, or use the “Cite
+this repository” button on GitHub. If you use baselinr in research or
+practice, I would love to hear about it: <zl1212@uw.edu>.
+
 ## License
 
 MIT © Yuxia Liang
