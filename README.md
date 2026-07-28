@@ -5,26 +5,29 @@
 
 <!-- badges: start -->
 
-[![CRAN status](https://www.r-pkg.org/badges/version/baselinr)](https://CRAN.R-project.org/package=baselinr)
-[![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/baselinr)](https://CRAN.R-project.org/package=baselinr)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/baselinr)](https://CRAN.R-project.org/package=baselinr)
+[![CRAN
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/baselinr)](https://CRAN.R-project.org/package=baselinr)
 [![R-CMD-check](https://github.com/zl1212-ship-it/baselinr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/zl1212-ship-it/baselinr/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![DOI](https://zenodo.org/badge/1279288173.svg)](https://doi.org/10.5281/zenodo.20937887)
 <!-- badges: end -->
 
-`baselinr` builds report-ready **baseline equivalence** tables for
-impact evaluations in education research, following the conventions of
-the [What Works Clearinghouse (WWC)](https://ies.ed.gov/ncee/wwc/).
-Given a treatment indicator and a set of covariates, it reports the
-appropriate standardized effect size for each covariate, **Hedges’ g**
-for continuous covariates and the **Cox index** for binary ones, together
-with the WWC equivalence category.
+`baselinr` applies the group-design determinations of the [What Works
+Clearinghouse (WWC)](https://ies.ed.gov/ncee/wwc/) to education impact
+studies, following the conventions of its Procedures and Standards
+Handbooks. It computes the WWC effect sizes (**Hedges’ g** for
+continuous covariates, the **Cox index** for binary ones) and
+baseline-equivalence categories, classifies **attrition** against the
+WWC boundary, returns the group-design **study rating**, and reports how
+stable a baseline-equivalence verdict is to defensible computation
+choices.
 
-It is a thin, education-specific reporting layer. For general-purpose
-covariate balance assessment, see
-[`cobalt`](https://ngreifer.github.io/cobalt/); `baselinr` focuses
-narrowly on the WWC equivalence categories that education evaluation
+It is a small, education-specific package. For general-purpose covariate
+balance assessment, see [`cobalt`](https://ngreifer.github.io/cobalt/);
+`baselinr` focuses on the WWC determinations that education evaluation
 reports are required to state.
 
 ## Installation
@@ -91,16 +94,21 @@ gt_baseline(baseline_equivalence(study, treatment = "treat"))
 
 Continuous covariates use Hedges’ g (with the WWC small-sample
 correction); binary covariates (numeric `0/1`, logical, or two-level
-factor) use the WWC Cox index. `wwc_summary()` collapses the table into
-an overall verdict, and `attrition()` reports overall and differential
-attrition. See `NEWS.md` for the roadmap.
+factor) use the WWC Cox index. `wwc_summary()` collapses the covariate
+table into an overall verdict. Beyond baseline equivalence,
+`attrition()` and `attrition_boundary()` report and classify sample
+attrition against the WWC boundary, `cluster_correction()` computes the
+WWC clustering correction for mismatched analyses, `wwc_rating()`
+returns the group-design study rating, and `wwc_robustness()` reports
+whether a baseline-equivalence verdict holds up under defensible
+alternative computations. See `NEWS.md` for the roadmap.
 
 ## Citation
 
-If you use baselinr in your work, please cite it: run `citation("baselinr")`
-in R for the full reference, or use the “Cite this repository” button on
-GitHub. If you use baselinr in research or practice, I would love to hear
-about it: <zl1212@uw.edu>.
+If you use baselinr in your work, please cite it: run
+`citation("baselinr")` in R for the full reference, or use the “Cite
+this repository” button on GitHub. If you use baselinr in research or
+practice, I would love to hear about it: <zl1212@uw.edu>.
 
 ## License
 

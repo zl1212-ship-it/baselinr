@@ -1,12 +1,6 @@
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
-
-* This is a new release.
-
-The single NOTE is the standard "New submission" / maintainer note for a first
-CRAN submission. The repository and pkgdown documentation URLs in DESCRIPTION are
-live and resolve.
+0 errors | 0 warnings | 0 notes
 
 ## Test environments
 
@@ -14,6 +8,13 @@ live and resolve.
 * GitHub Actions: ubuntu-latest (R devel, release, oldrel-1), macOS-latest
   (R release), windows-latest (R release)
 
+## Changes in this version
+
+baselinr 0.6.0 adds four functions covering the What Works Clearinghouse
+group-design determinations and their robustness: attrition_boundary(),
+wwc_rating(), cluster_correction(), and wwc_robustness(). The Title and
+Description are broadened to match. See NEWS.md for details.
+
 ## Downstream dependencies
 
-There are currently no downstream dependencies (new submission).
+There are no reverse dependencies.
