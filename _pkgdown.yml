@@ -13,6 +13,13 @@ reference:
   - wwc_classify
   - wwc_summary
   - attrition
+- title: Study rating and robustness
+  desc: Adjudicate a WWC study rating and check how robust it is.
+  contents:
+  - wwc_rating
+  - attrition_boundary
+  - cluster_correction
+  - wwc_robustness
 - title: Report output
   desc: Visualise and format a baseline equivalence table.
   contents:
