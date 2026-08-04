@@ -11,8 +11,10 @@
 <url><loc>https://zl1212-ship-it.github.io/baselinr/news/index.html</loc></url>
 <url><loc>https://zl1212-ship-it.github.io/baselinr/paper.html</loc></url>
 <url><loc>https://zl1212-ship-it.github.io/baselinr/reference/attrition.html</loc></url>
+<url><loc>https://zl1212-ship-it.github.io/baselinr/reference/attrition_boundary.html</loc></url>
 <url><loc>https://zl1212-ship-it.github.io/baselinr/reference/baseline_equivalence.html</loc></url>
 <url><loc>https://zl1212-ship-it.github.io/baselinr/reference/baselinr-package.html</loc></url>
+<url><loc>https://zl1212-ship-it.github.io/baselinr/reference/cluster_correction.html</loc></url>
 <url><loc>https://zl1212-ship-it.github.io/baselinr/reference/cox_index.html</loc></url>
 <url><loc>https://zl1212-ship-it.github.io/baselinr/reference/gt_baseline.html</loc></url>
 <url><loc>https://zl1212-ship-it.github.io/baselinr/reference/hedges_g.html</loc></url>
@@ -20,6 +22,8 @@
 <url><loc>https://zl1212-ship-it.github.io/baselinr/reference/love_plot.html</loc></url>
 <url><loc>https://zl1212-ship-it.github.io/baselinr/reference/tutoring.html</loc></url>
 <url><loc>https://zl1212-ship-it.github.io/baselinr/reference/wwc_classify.html</loc></url>
+<url><loc>https://zl1212-ship-it.github.io/baselinr/reference/wwc_rating.html</loc></url>
+<url><loc>https://zl1212-ship-it.github.io/baselinr/reference/wwc_robustness.html</loc></url>
 <url><loc>https://zl1212-ship-it.github.io/baselinr/reference/wwc_summary.html</loc></url>
 </urlset>
 

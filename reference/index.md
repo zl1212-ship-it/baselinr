@@ -17,6 +17,19 @@ Build WWC-aligned baseline equivalence tables and effect sizes.
 - [`attrition()`](https://zl1212-ship-it.github.io/baselinr/reference/attrition.md)
   : Overall and differential attrition
 
+## Study rating and robustness
+
+Adjudicate a WWC study rating and check how robust it is.
+
+- [`wwc_rating()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_rating.md)
+  : WWC group-design study rating
+- [`attrition_boundary()`](https://zl1212-ship-it.github.io/baselinr/reference/attrition_boundary.md)
+  : Classify a study under the WWC attrition standard
+- [`cluster_correction()`](https://zl1212-ship-it.github.io/baselinr/reference/cluster_correction.md)
+  : WWC clustering correction for mismatched analyses
+- [`wwc_robustness()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_robustness.md)
+  : Robustness of the WWC baseline-equivalence verdict
+
 ## Report output
 
 Visualise and format a baseline equivalence table.

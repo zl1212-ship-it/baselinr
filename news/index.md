@@ -1,7 +1,40 @@
 # Changelog
 
-## baselinr 0.5.0.9000 (development version)
+## baselinr 0.6.0
 
+- New
+  [`wwc_robustness()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_robustness.md):
+  reports how stable a baseline-equivalence verdict is to the
+  computation choices an analyst could defensibly make differently
+  (standardizing by the pooled versus the comparison-group standard
+  deviation, and applying the WWC small-sample correction or not),
+  flagging whether each covariate’s category, and the overall verdict,
+  changes. A multiverse view of a single WWC determination.
+- New
+  [`attrition_boundary()`](https://zl1212-ship-it.github.io/baselinr/reference/attrition_boundary.md):
+  classifies a study as low or high attrition against the WWC attrition
+  boundary (Standards Handbook v4.1, Table II.1), under the cautious or
+  optimistic assumption. Complements
+  [`attrition()`](https://zl1212-ship-it.github.io/baselinr/reference/attrition.md),
+  which reports the rates but leaves the classification to the user.
+- New
+  [`wwc_rating()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_rating.md):
+  applies the WWC group-design rating logic (Standards Handbook v4.1,
+  Section II) to attrition and baseline equivalence, returning “Meets
+  Without Reservations”, “Meets With Reservations”, or “Does Not Meet”.
+- New
+  [`cluster_correction()`](https://zl1212-ship-it.github.io/baselinr/reference/cluster_correction.md):
+  the WWC clustering correction for mismatched analyses (Procedures
+  Handbook v4.1, Appendix F, after Hedges 2007). Corrects the t
+  statistic and its degrees of freedom for clustering and returns the
+  clustering-corrected p value and significance decision, with the WWC
+  default ICCs (0.20 achievement, 0.10 other). Validated against 1,800+
+  clustered findings in the official WWC study database.
+- Documented that
+  [`cox_index()`](https://zl1212-ship-it.github.io/baselinr/reference/cox_index.md)
+  follows Procedures Handbook v4.1 \[VI.1.2\] exactly: the Cox index
+  carries no small-sample correction (that correction applies to Hedges’
+  g only).
 - [`hedges_g()`](https://zl1212-ship-it.github.io/baselinr/reference/hedges_g.md)
   and
   [`cox_index()`](https://zl1212-ship-it.github.io/baselinr/reference/cox_index.md)

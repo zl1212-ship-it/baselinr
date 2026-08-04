@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">baselinr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,8 +38,13 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.5.0.9000" id="baselinr-0509000-development-version">baselinr 0.5.0.9000 (development version)<a class="anchor" aria-label="anchor" href="#baselinr-0509000-development-version"></a></h2>
-<ul><li>
+<h2 class="pkg-version" data-toc-text="0.6.0" id="baselinr-060">baselinr 0.6.0<a class="anchor" aria-label="anchor" href="#baselinr-060"></a></h2>
+<ul><li>New <code><a href="../reference/wwc_robustness.html">wwc_robustness()</a></code>: reports how stable a baseline-equivalence verdict is to the computation choices an analyst could defensibly make differently (standardizing by the pooled versus the comparison-group standard deviation, and applying the WWC small-sample correction or not), flagging whether each covariate’s category, and the overall verdict, changes. A multiverse view of a single WWC determination.</li>
+<li>New <code><a href="../reference/attrition_boundary.html">attrition_boundary()</a></code>: classifies a study as low or high attrition against the WWC attrition boundary (Standards Handbook v4.1, Table II.1), under the cautious or optimistic assumption. Complements <code><a href="../reference/attrition.html">attrition()</a></code>, which reports the rates but leaves the classification to the user.</li>
+<li>New <code><a href="../reference/wwc_rating.html">wwc_rating()</a></code>: applies the WWC group-design rating logic (Standards Handbook v4.1, Section II) to attrition and baseline equivalence, returning “Meets Without Reservations”, “Meets With Reservations”, or “Does Not Meet”.</li>
+<li>New <code><a href="../reference/cluster_correction.html">cluster_correction()</a></code>: the WWC clustering correction for mismatched analyses (Procedures Handbook v4.1, Appendix F, after Hedges 2007). Corrects the t statistic and its degrees of freedom for clustering and returns the clustering-corrected p value and significance decision, with the WWC default ICCs (0.20 achievement, 0.10 other). Validated against 1,800+ clustered findings in the official WWC study database.</li>
+<li>Documented that <code><a href="../reference/cox_index.html">cox_index()</a></code> follows Procedures Handbook v4.1 [VI.1.2] exactly: the Cox index carries no small-sample correction (that correction applies to Hedges’ g only).</li>
+<li>
 <code><a href="../reference/hedges_g.html">hedges_g()</a></code> and <code><a href="../reference/cox_index.html">cox_index()</a></code> now handle missing values consistently when <code>na.rm = FALSE</code>: both reject missing input up front with the message “Missing values present; set <code>na.rm = TRUE</code> to drop them.” Previously <code><a href="../reference/hedges_g.html">hedges_g()</a></code> raised an opaque internal error while <code><a href="../reference/cox_index.html">cox_index()</a></code> silently returned <code>NA</code> (<a href="https://github.com/zl1212-ship-it/baselinr/issues/12" class="external-link">#12</a>).</li>
 </ul></div>
     <div class="section level2">

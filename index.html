@@ -5,14 +5,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>WWC-Aligned Baseline Equivalence Tables for Education Impact Evaluations • baselinr</title>
+<title>What Works Clearinghouse Standards for Education Impact Evaluations • baselinr</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="WWC-Aligned Baseline Equivalence Tables for Education Impact Evaluations">
-<meta name="description" content="Produces report-ready baseline equivalence tables for impact evaluations in education research, following the conventions of the What Works Clearinghouse (WWC). Computes standardized mean differences (Hedges' g) between treatment and comparison groups for continuous covariates and classifies each covariate into the WWC baseline-equivalence categories (satisfied, satisfied with statistical adjustment, or not satisfied).">
-<meta property="og:description" content="Produces report-ready baseline equivalence tables for impact evaluations in education research, following the conventions of the What Works Clearinghouse (WWC). Computes standardized mean differences (Hedges' g) between treatment and comparison groups for continuous covariates and classifies each covariate into the WWC baseline-equivalence categories (satisfied, satisfied with statistical adjustment, or not satisfied).">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="What Works Clearinghouse Standards for Education Impact Evaluations">
+<meta name="description" content="Applies the group-design determinations of the What Works Clearinghouse (WWC) to education impact studies. Computes WWC effect sizes (Hedges' g with the small-sample correction, and the Cox index) and classifies baseline equivalence; classifies overall and differential attrition against the WWC attrition boundary; returns the group-design study rating; and reports the robustness of the baseline-equivalence verdict as a multiverse over the computation choices an analyst could defensibly make differently. Provides report-ready tables and Love plots.">
+<meta property="og:description" content="Applies the group-design determinations of the What Works Clearinghouse (WWC) to education impact studies. Computes WWC effect sizes (Hedges' g with the small-sample correction, and the Cox index) and classifies baseline equivalence; classifies overall and differential attrition against the WWC attrition boundary; returns the group-design study rating; and reports the robustness of the baseline-equivalence verdict as a multiverse over the computation choices an analyst could defensibly make differently. Provides report-ready tables and Love plots.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">baselinr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,8 +58,8 @@
 </h1></div>
 <!-- badges: start -->
 
-<p><code>baselinr</code> builds report-ready <strong>baseline equivalence</strong> tables for impact evaluations in education research, following the conventions of the <a href="https://ies.ed.gov/ncee/wwc/" class="external-link">What Works Clearinghouse (WWC)</a>. Given a treatment indicator and a set of covariates, it reports the appropriate standardized effect size for each covariate, <strong>Hedges’ g</strong> for continuous covariates and the <strong>Cox index</strong> for binary ones, together with the WWC equivalence category.</p>
-<p>It is a thin, education-specific reporting layer. For general-purpose covariate balance assessment, see <a href="https://ngreifer.github.io/cobalt/" class="external-link"><code>cobalt</code></a>; <code>baselinr</code> focuses narrowly on the WWC equivalence categories that education evaluation reports are required to state.</p>
+<p><code>baselinr</code> applies the group-design determinations of the <a href="https://ies.ed.gov/ncee/wwc/" class="external-link">What Works Clearinghouse (WWC)</a> to education impact studies, following the conventions of its Procedures and Standards Handbooks. It computes the WWC effect sizes (<strong>Hedges’ g</strong> for continuous covariates, the <strong>Cox index</strong> for binary ones) and baseline-equivalence categories, classifies <strong>attrition</strong> against the WWC boundary, returns the group-design <strong>study rating</strong>, and reports how stable a baseline-equivalence verdict is to defensible computation choices.</p>
+<p>It is a small, education-specific package. For general-purpose covariate balance assessment, see <a href="https://ngreifer.github.io/cobalt/" class="external-link"><code>cobalt</code></a>; <code>baselinr</code> focuses on the WWC determinations that education evaluation reports are required to state.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -183,7 +183,7 @@
 <div class="section level2">
 <h2 id="scope">Scope<a class="anchor" aria-label="anchor" href="#scope"></a>
 </h2>
-<p>Continuous covariates use Hedges’ g (with the WWC small-sample correction); binary covariates (numeric <code>0/1</code>, logical, or two-level factor) use the WWC Cox index. <code><a href="reference/wwc_summary.html">wwc_summary()</a></code> collapses the table into an overall verdict, and <code><a href="reference/attrition.html">attrition()</a></code> reports overall and differential attrition. See <code>NEWS.md</code> for the roadmap.</p>
+<p>Continuous covariates use Hedges’ g (with the WWC small-sample correction); binary covariates (numeric <code>0/1</code>, logical, or two-level factor) use the WWC Cox index. <code><a href="reference/wwc_summary.html">wwc_summary()</a></code> collapses the covariate table into an overall verdict. Beyond baseline equivalence, <code><a href="reference/attrition.html">attrition()</a></code> and <code><a href="reference/attrition_boundary.html">attrition_boundary()</a></code> report and classify sample attrition against the WWC boundary, <code><a href="reference/cluster_correction.html">cluster_correction()</a></code> computes the WWC clustering correction for mismatched analyses, <code><a href="reference/wwc_rating.html">wwc_rating()</a></code> returns the group-design study rating, and <code><a href="reference/wwc_robustness.html">wwc_robustness()</a></code> reports whether a baseline-equivalence verdict holds up under defensible alternative computations. See <code>NEWS.md</code> for the roadmap.</p>
 </div>
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>

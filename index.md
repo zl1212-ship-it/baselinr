@@ -1,17 +1,18 @@
 # baselinr
 
-`baselinr` builds report-ready **baseline equivalence** tables for
-impact evaluations in education research, following the conventions of
-the [What Works Clearinghouse (WWC)](https://ies.ed.gov/ncee/wwc/).
-Given a treatment indicator and a set of covariates, it reports the
-appropriate standardized effect size for each covariate, **Hedges’ g**
-for continuous covariates and the **Cox index** for binary ones,
-together with the WWC equivalence category.
+`baselinr` applies the group-design determinations of the [What Works
+Clearinghouse (WWC)](https://ies.ed.gov/ncee/wwc/) to education impact
+studies, following the conventions of its Procedures and Standards
+Handbooks. It computes the WWC effect sizes (**Hedges’ g** for
+continuous covariates, the **Cox index** for binary ones) and
+baseline-equivalence categories, classifies **attrition** against the
+WWC boundary, returns the group-design **study rating**, and reports how
+stable a baseline-equivalence verdict is to defensible computation
+choices.
 
-It is a thin, education-specific reporting layer. For general-purpose
-covariate balance assessment, see
-[`cobalt`](https://ngreifer.github.io/cobalt/); `baselinr` focuses
-narrowly on the WWC equivalence categories that education evaluation
+It is a small, education-specific package. For general-purpose covariate
+balance assessment, see [`cobalt`](https://ngreifer.github.io/cobalt/);
+`baselinr` focuses on the WWC determinations that education evaluation
 reports are required to state.
 
 ## Installation
@@ -88,10 +89,19 @@ Continuous covariates use Hedges’ g (with the WWC small-sample
 correction); binary covariates (numeric `0/1`, logical, or two-level
 factor) use the WWC Cox index.
 [`wwc_summary()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_summary.md)
-collapses the table into an overall verdict, and
+collapses the covariate table into an overall verdict. Beyond baseline
+equivalence,
 [`attrition()`](https://zl1212-ship-it.github.io/baselinr/reference/attrition.md)
-reports overall and differential attrition. See `NEWS.md` for the
-roadmap.
+and
+[`attrition_boundary()`](https://zl1212-ship-it.github.io/baselinr/reference/attrition_boundary.md)
+report and classify sample attrition against the WWC boundary,
+[`cluster_correction()`](https://zl1212-ship-it.github.io/baselinr/reference/cluster_correction.md)
+computes the WWC clustering correction for mismatched analyses,
+[`wwc_rating()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_rating.md)
+returns the group-design study rating, and
+[`wwc_robustness()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_robustness.md)
+reports whether a baseline-equivalence verdict holds up under defensible
+alternative computations. See `NEWS.md` for the roadmap.
 
 ## Citation
 
