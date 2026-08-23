@@ -2,6 +2,8 @@
 
 ## baselinr 0.6.0
 
+CRAN release: 2026-08-22
+
 - New
   [`wwc_robustness()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_robustness.md):
   reports how stable a baseline-equivalence verdict is to the
