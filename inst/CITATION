@@ -1,5 +1,5 @@
 year <- "2026"
-ver  <- if (exists("meta") && !is.null(meta$Version)) meta$Version else "0.5.0"
+ver  <- if (exists("meta") && !is.null(meta$Version)) meta$Version else "0.6.0"
 
 bibentry(
   bibtype = "Manual",
