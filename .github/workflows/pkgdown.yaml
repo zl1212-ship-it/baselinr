@@ -1,9 +1,9 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# No release trigger: a release build checks out the tag, which can predate
+# site fixes on main (this failed on v0.6.0); push to main already deploys.
 on:
   push:
     branches: [main, master]
-  release:
-    types: [published]
   workflow_dispatch:
 
 name: pkgdown
