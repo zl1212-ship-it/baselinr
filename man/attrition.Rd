@@ -43,5 +43,5 @@ attrition(g, kept)
 }
 \references{
 What Works Clearinghouse (2022).
-\emph{Procedures Handbook} (Version 5.0). U.S. Department of Education.
+\emph{Procedures and Standards Handbook} (Version 5.0). U.S. Department of Education.
 }

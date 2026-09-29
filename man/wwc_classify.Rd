@@ -32,5 +32,5 @@ wwc_classify(c(0.03, 0.12, 0.80))
 }
 \references{
 What Works Clearinghouse (2022).
-\emph{Procedures Handbook} (Version 5.0). U.S. Department of Education.
+\emph{Procedures and Standards Handbook} (Version 5.0). U.S. Department of Education.
 }

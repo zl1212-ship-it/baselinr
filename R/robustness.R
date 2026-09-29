@@ -27,7 +27,7 @@
 #'   overall verdict under each choice is attached as `attr(x, "overall")`, and
 #'   `attr(x, "overall_stable")` is `TRUE` when the overall verdict is invariant.
 #'
-#' @references What Works Clearinghouse (2022). *Procedures Handbook*
+#' @references What Works Clearinghouse (2022). *Procedures and Standards Handbook*
 #'   (Version 5.0). U.S. Department of Education. Steegen, S., Tuerlinckx, F.,
 #'   Gelman, A., & Vanpaemel, W. (2016). Increasing transparency through a
 #'   multiverse analysis. *Perspectives on Psychological Science*, 11(5), 702-712.

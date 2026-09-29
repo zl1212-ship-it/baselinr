@@ -1,7 +1,7 @@
 Package: baselinr
 Title: What Works Clearinghouse Standards for Education Impact
     Evaluations
-Version: 0.6.0
+Version: 0.6.0.9000
 Authors@R:
     person("Yuxia", "Liang", email = "zl1212@uw.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0008-6489-3836"))

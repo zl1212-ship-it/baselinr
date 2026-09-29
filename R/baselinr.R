@@ -33,7 +33,7 @@
 #'   group mean exceeds the comparison group mean.
 #'
 #' @references What Works Clearinghouse (2022).
-#'   *Procedures Handbook* (Version 5.0). U.S. Department of Education.
+#'   *Procedures and Standards Handbook* (Version 5.0). U.S. Department of Education.
 #'
 #' @examples
 #' x <- c(5, 6, 7, 4, 5, 6)
@@ -109,7 +109,7 @@ hedges_g <- function(x, treatment, na.rm = TRUE) {
 #'   when a group proportion is exactly 0 or 1, where the index is undefined.
 #'
 #' @references What Works Clearinghouse (2022).
-#'   *Procedures Handbook* (Version 5.0). U.S. Department of Education.
+#'   *Procedures and Standards Handbook* (Version 5.0). U.S. Department of Education.
 #'
 #' @examples
 #' x <- c(1, 1, 1, 1, 0, 1, 0, 0)
@@ -174,7 +174,7 @@ cox_index <- function(x, treatment, na.rm = TRUE) {
 #'   `NA` inputs return `NA`.
 #'
 #' @references What Works Clearinghouse (2022).
-#'   *Procedures Handbook* (Version 5.0). U.S. Department of Education.
+#'   *Procedures and Standards Handbook* (Version 5.0). U.S. Department of Education.
 #'
 #' @examples
 #' wwc_classify(c(0.03, 0.12, 0.80))
@@ -208,21 +208,48 @@ wwc_classify <- function(es) {
 #'   [hedges_g()] for how the treatment group is determined).
 #' @param covariates Character vector of column names to evaluate. Defaults to
 #'   all numeric, logical, and factor columns in `data` other than `treatment`.
+#' @param missing How to handle missing covariate values. `"pairwise"` (the
+#'   default, and the behavior of earlier versions) computes each covariate's
+#'   row from the cases non-missing on that covariate and on `treatment`, so
+#'   rows can describe different subsets. `"complete"` restricts every row to
+#'   the cases complete on `treatment` and on all evaluated covariates, so
+#'   every row describes the same set of cases.
+#' @param report_missing Logical; if `TRUE`, adds `missing_treatment` and
+#'   `missing_comparison` columns reporting each group's proportion of missing
+#'   values on the covariate. The rates are computed on all cases with a
+#'   non-missing `treatment` value, before any deletion, under either setting
+#'   of `missing`. Default `FALSE`.
 #'
 #' @return A data frame with one row per covariate and the columns:
 #'   `covariate`; `type` (`"continuous"` or `"binary"`); `n_treatment`,
 #'   `n_comparison`; `mean_treatment`, `mean_comparison` (group means for
 #'   continuous covariates, event proportions for binary ones); `sd_treatment`,
 #'   `sd_comparison`; `effect_size` (Hedges' g or Cox index, per `type`); and
-#'   `wwc_category`.
+#'   `wwc_category`. If `report_missing = TRUE`, the columns
+#'   `missing_treatment` and `missing_comparison` appear after the
+#'   sample-size columns.
 #'
 #' @details
 #' A covariate with exactly two unique non-missing values is treated as binary;
 #' any other numeric covariate is treated as continuous. A non-numeric covariate
-#' with more than two categories is not supported and raises an error.
+#' with more than two categories is not supported and raises an error. The
+#' binary-versus-continuous decision uses the sample actually contributing to
+#' the row, so it can differ between `missing = "pairwise"` and
+#' `missing = "complete"` when deletion removes all cases at one value.
+#'
+#' Under WWC review, baseline equivalence must be established on the analytic
+#' sample, the cases actually contributing to the impact estimate. This
+#' function sees only the covariates, never the outcome, so neither option
+#' identifies the analytic sample by itself; to establish equivalence on the
+#' analytic sample, pass that subset of cases as `data`. Within the data
+#' supplied, `missing = "complete"` keeps every row on one common set of
+#' cases, as a complete-case analysis would, while `"pairwise"` uses all
+#' available information per covariate. `report_missing = TRUE` documents how
+#' much is missing in each group, complementing the sample-loss reporting in
+#' [attrition()].
 #'
 #' @references What Works Clearinghouse (2022).
-#'   *Procedures Handbook* (Version 5.0). U.S. Department of Education.
+#'   *Procedures and Standards Handbook* (Version 5.0). U.S. Department of Education.
 #'
 #' @examples
 #' df <- data.frame(
@@ -233,7 +260,9 @@ wwc_classify <- function(es) {
 #' baseline_equivalence(df, treatment = "treat")
 #'
 #' @export
-baseline_equivalence <- function(data, treatment, covariates = NULL) {
+baseline_equivalence <- function(data, treatment, covariates = NULL,
+                                 missing = c("pairwise", "complete"),
+                                 report_missing = FALSE) {
   if (!is.data.frame(data)) {
     stop("`data` must be a data frame.", call. = FALSE)
   }
@@ -243,6 +272,7 @@ baseline_equivalence <- function(data, treatment, covariates = NULL) {
   if (!treatment %in% names(data)) {
     stop(sprintf("Column '%s' not found in `data`.", treatment), call. = FALSE)
   }
+  missing <- match.arg(missing)
   grp <- data[[treatment]]
   levs <- sort(unique(grp[!is.na(grp)]))
   if (length(levs) != 2L) {
@@ -269,23 +299,76 @@ baseline_equivalence <- function(data, treatment, covariates = NULL) {
     ), call. = FALSE)
   }
 
+  if (identical(missing, "complete")) {
+    keep <- !is.na(grp)
+    for (cv in covariates) {
+      keep <- keep & !is.na(data[[cv]])
+    }
+    n_t_cc <- sum(grp[keep] == levs[2])
+    n_c_cc <- sum(grp[keep] == levs[1])
+    if (n_t_cc < 2L || n_c_cc < 2L) {
+      stop(sprintf(
+        paste0(
+          "Fewer than two complete cases in a group under ",
+          "`missing = \"complete\"` (treatment: %d, comparison: %d). ",
+          "Rerun with `missing = \"pairwise\"` and `report_missing = TRUE` ",
+          "to see each covariate's missingness."
+        ),
+        n_t_cc, n_c_cc
+      ), call. = FALSE)
+    }
+    data_used <- data[keep, , drop = FALSE]
+    grp_used <- grp[keep]
+  } else {
+    data_used <- data
+    grp_used <- grp
+  }
+
+  known <- !is.na(grp)
   rows <- lapply(covariates, function(cv) {
-    .baseline_row(cv, data[[cv]], grp, levs)
+    row <- .baseline_row(cv, data_used[[cv]], grp_used, levs, missing)
+    if (isTRUE(report_missing)) {
+      x_known <- data[[cv]][known]
+      g_known <- grp[known]
+      row$missing_treatment <- mean(is.na(x_known[g_known == levs[2]]))
+      row$missing_comparison <- mean(is.na(x_known[g_known == levs[1]]))
+    }
+    row
   })
   out <- do.call(rbind, rows)
+  if (isTRUE(report_missing)) {
+    lead <- c(
+      "covariate", "type", "n_treatment", "n_comparison",
+      "missing_treatment", "missing_comparison"
+    )
+    out <- out[c(lead, setdiff(names(out), lead))]
+  }
   out$wwc_category <- wwc_classify(out$effect_size)
   rownames(out) <- NULL
   out
 }
 
 # Internal: build one table row for a single covariate.
-.baseline_row <- function(cv, x, grp, levs) {
+.baseline_row <- function(cv, x, grp, levs, missing = "pairwise") {
   keep <- !is.na(x) & !is.na(grp)
   xk <- x[keep]
   gk <- grp[keep]
   treat_idx <- gk == levs[2]
   comp_idx <- gk == levs[1]
   uniq <- unique(xk)
+
+  # Only under "complete": the deletion this function performed can itself
+  # collapse a covariate to one value, so name the covariate and the cause.
+  # Under "pairwise" the historical errors are preserved unchanged.
+  if (identical(missing, "complete") && length(uniq) < 2L) {
+    stop(sprintf(
+      paste0(
+        "Covariate '%s' has a single observed value after complete-case ",
+        "deletion (`missing = \"complete\"`)."
+      ),
+      cv
+    ), call. = FALSE)
+  }
 
   if (length(uniq) == 2L) {
     # Binary covariate -> Cox index; summaries are event proportions.

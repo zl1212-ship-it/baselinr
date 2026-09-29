@@ -17,7 +17,7 @@
 #'   `overall`.
 #'
 #' @references What Works Clearinghouse (2022).
-#'   *Procedures Handbook* (Version 5.0). U.S. Department of Education.
+#'   *Procedures and Standards Handbook* (Version 5.0). U.S. Department of Education.
 #'
 #' @examples
 #' df <- data.frame(
@@ -82,7 +82,7 @@ wwc_summary <- function(equivalence) {
 #'   `differential_attrition` (all proportions).
 #'
 #' @references What Works Clearinghouse (2022).
-#'   *Procedures Handbook* (Version 5.0). U.S. Department of Education.
+#'   *Procedures and Standards Handbook* (Version 5.0). U.S. Department of Education.
 #'
 #' @examples
 #' set.seed(1)

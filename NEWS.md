@@ -1,3 +1,15 @@
+# baselinr 0.6.0.9000 (development version)
+
+* `baseline_equivalence()` gains missing-data handling options (#6): a
+  `missing` argument choosing between `"pairwise"` (the previous behavior and
+  still the default: each covariate uses its own available cases) and
+  `"complete"` (every row restricted to the cases complete on the treatment
+  column and all evaluated covariates, so every row describes the same set
+  of cases), and a `report_missing` argument adding `missing_treatment` /
+  `missing_comparison` columns with each group's share of missing values,
+  computed before any deletion. `gt_baseline()` labels and formats the new
+  columns. Default output is unchanged.
+
 # baselinr 0.6.0
 
 * New `wwc_robustness()`: reports how stable a baseline-equivalence verdict is to

@@ -51,7 +51,7 @@ attr(r, "overall")
 
 }
 \references{
-What Works Clearinghouse (2022). \emph{Procedures Handbook}
+What Works Clearinghouse (2022). \emph{Procedures and Standards Handbook}
 (Version 5.0). U.S. Department of Education. Steegen, S., Tuerlinckx, F.,
 Gelman, A., & Vanpaemel, W. (2016). Increasing transparency through a
 multiverse analysis. \emph{Perspectives on Psychological Science}, 11(5), 702-712.

@@ -4,7 +4,13 @@
 \alias{baseline_equivalence}
 \title{Baseline equivalence table for an impact evaluation}
 \usage{
-baseline_equivalence(data, treatment, covariates = NULL)
+baseline_equivalence(
+  data,
+  treatment,
+  covariates = NULL,
+  missing = c("pairwise", "complete"),
+  report_missing = FALSE
+)
 }
 \arguments{
 \item{data}{A data frame.}
@@ -15,6 +21,19 @@ membership. Must have exactly two unique non-missing values (see
 
 \item{covariates}{Character vector of column names to evaluate. Defaults to
 all numeric, logical, and factor columns in \code{data} other than \code{treatment}.}
+
+\item{missing}{How to handle missing covariate values. \code{"pairwise"} (the
+default, and the behavior of earlier versions) computes each covariate's
+row from the cases non-missing on that covariate and on \code{treatment}, so
+rows can describe different subsets. \code{"complete"} restricts every row to
+the cases complete on \code{treatment} and on all evaluated covariates, so
+every row describes the same set of cases.}
+
+\item{report_missing}{Logical; if \code{TRUE}, adds \code{missing_treatment} and
+\code{missing_comparison} columns reporting each group's proportion of missing
+values on the covariate. The rates are computed on all cases with a
+non-missing \code{treatment} value, before any deletion, under either setting
+of \code{missing}. Default \code{FALSE}.}
 }
 \value{
 A data frame with one row per covariate and the columns:
@@ -22,7 +41,9 @@ A data frame with one row per covariate and the columns:
 \code{n_comparison}; \code{mean_treatment}, \code{mean_comparison} (group means for
 continuous covariates, event proportions for binary ones); \code{sd_treatment},
 \code{sd_comparison}; \code{effect_size} (Hedges' g or Cox index, per \code{type}); and
-\code{wwc_category}.
+\code{wwc_category}. If \code{report_missing = TRUE}, the columns
+\code{missing_treatment} and \code{missing_comparison} appear after the
+sample-size columns.
 }
 \description{
 Builds a report-ready baseline-equivalence table for a set of covariates,
@@ -34,7 +55,21 @@ covariates use the Cox index.
 \details{
 A covariate with exactly two unique non-missing values is treated as binary;
 any other numeric covariate is treated as continuous. A non-numeric covariate
-with more than two categories is not supported and raises an error.
+with more than two categories is not supported and raises an error. The
+binary-versus-continuous decision uses the sample actually contributing to
+the row, so it can differ between \code{missing = "pairwise"} and
+\code{missing = "complete"} when deletion removes all cases at one value.
+
+Under WWC review, baseline equivalence must be established on the analytic
+sample, the cases actually contributing to the impact estimate. This
+function sees only the covariates, never the outcome, so neither option
+identifies the analytic sample by itself; to establish equivalence on the
+analytic sample, pass that subset of cases as \code{data}. Within the data
+supplied, \code{missing = "complete"} keeps every row on one common set of
+cases, as a complete-case analysis would, while \code{"pairwise"} uses all
+available information per covariate. \code{report_missing = TRUE} documents how
+much is missing in each group, complementing the sample-loss reporting in
+\code{\link[=attrition]{attrition()}}.
 }
 \examples{
 df <- data.frame(
@@ -47,5 +82,5 @@ baseline_equivalence(df, treatment = "treat")
 }
 \references{
 What Works Clearinghouse (2022).
-\emph{Procedures Handbook} (Version 5.0). U.S. Department of Education.
+\emph{Procedures and Standards Handbook} (Version 5.0). U.S. Department of Education.
 }

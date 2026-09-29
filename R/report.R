@@ -124,6 +124,7 @@ gt_baseline <- function(equivalence, decimals = 2) {
 
   num_cols <- intersect(
     c(
+      "missing_treatment", "missing_comparison",
       "mean_treatment", "mean_comparison",
       "sd_treatment", "sd_comparison", "effect_size"
     ),
@@ -132,6 +133,7 @@ gt_baseline <- function(equivalence, decimals = 2) {
   labels <- list(
     covariate = "Covariate", type = "Type",
     n_treatment = "n (T)", n_comparison = "n (C)",
+    missing_treatment = "Missing (T)", missing_comparison = "Missing (C)",
     mean_treatment = "Mean/Prop (T)", mean_comparison = "Mean/Prop (C)",
     sd_treatment = "SD (T)", sd_comparison = "SD (C)",
     effect_size = "Effect size", wwc_category = "WWC category"
@@ -141,6 +143,15 @@ gt_baseline <- function(equivalence, decimals = 2) {
   tbl <- gt::gt(equivalence)
   tbl <- gt::fmt_number(tbl, columns = num_cols, decimals = decimals)
   tbl <- gt::cols_label(tbl, .list = labels)
+  if (any(c("missing_treatment", "missing_comparison") %in% names(equivalence))) {
+    tbl <- gt::tab_source_note(
+      tbl,
+      paste(
+        "Missing (T)/(C): share of missing values among cases with a known",
+        "group, before any case deletion. n (T)/(C): cases used for that row."
+      )
+    )
+  }
   gt::tab_header(
     tbl,
     title = "Baseline equivalence",
