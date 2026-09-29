@@ -32,8 +32,8 @@ A character vector the same length as `es`:
 
 ## References
 
-What Works Clearinghouse (2022). *Procedures Handbook* (Version 5.0).
-U.S. Department of Education.
+What Works Clearinghouse (2022). *Procedures and Standards Handbook*
+(Version 5.0). U.S. Department of Education.
 
 ## Examples
 

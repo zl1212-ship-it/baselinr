@@ -51,10 +51,11 @@ choice is made.
 
 ## References
 
-What Works Clearinghouse (2022). *Procedures Handbook* (Version 5.0).
-U.S. Department of Education. Steegen, S., Tuerlinckx, F., Gelman, A., &
-Vanpaemel, W. (2016). Increasing transparency through a multiverse
-analysis. *Perspectives on Psychological Science*, 11(5), 702-712.
+What Works Clearinghouse (2022). *Procedures and Standards Handbook*
+(Version 5.0). U.S. Department of Education. Steegen, S., Tuerlinckx,
+F., Gelman, A., & Vanpaemel, W. (2016). Increasing transparency through
+a multiverse analysis. *Perspectives on Psychological Science*, 11(5),
+702-712.
 
 ## Examples
 
