@@ -7,6 +7,6 @@ bibentry(
   author  = person("Yuxia", "Liang", comment = c(ORCID = "0009-0008-6489-3836")),
   year    = year,
   note    = paste("R package version", ver),
-  doi     = "10.5281/zenodo.20937887",
+  doi     = "10.5281/zenodo.20937886",
   url     = "https://CRAN.R-project.org/package=baselinr"
 )

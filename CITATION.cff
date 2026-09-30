@@ -12,10 +12,10 @@ version: 0.6.0
 license: MIT
 repository-code: "https://github.com/zl1212-ship-it/baselinr"
 url: "https://zl1212-ship-it.github.io/baselinr/"
-doi: 10.5281/zenodo.20937887
+doi: 10.5281/zenodo.20937886
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.20937887
+    value: 10.5281/zenodo.20937886
     description: "Concept DOI (all versions)"
 date-released: "2026-08-22"
 keywords:

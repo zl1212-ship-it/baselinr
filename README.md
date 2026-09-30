@@ -12,7 +12,7 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/baselinr)](https://CRAN
 [![R-CMD-check](https://github.com/zl1212-ship-it/baselinr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/zl1212-ship-it/baselinr/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![DOI](https://zenodo.org/badge/1279288173.svg)](https://doi.org/10.5281/zenodo.20937887)
+[![DOI](https://zenodo.org/badge/1279288173.svg)](https://doi.org/10.5281/zenodo.20937886)
 <!-- badges: end -->
 
 `baselinr` applies the group-design determinations of the [What Works
