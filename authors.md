@@ -12,7 +12,7 @@ Source:
 
 Liang Y (2026). *baselinr: WWC-Aligned Baseline Equivalence Tables for
 Education Impact Evaluations*.
-[doi:10.5281/zenodo.20937887](https://doi.org/10.5281/zenodo.20937887).
+[doi:10.5281/zenodo.20937886](https://doi.org/10.5281/zenodo.20937886).
 R package version 0.6.0.9000,
 <https://CRAN.R-project.org/package=baselinr>.
 
@@ -21,6 +21,6 @@ R package version 0.6.0.9000,
       author = {Yuxia Liang},
       year = {2026},
       note = {R package version 0.6.0.9000},
-      doi = {10.5281/zenodo.20937887},
+      doi = {10.5281/zenodo.20937886},
       url = {https://CRAN.R-project.org/package=baselinr},
     }
