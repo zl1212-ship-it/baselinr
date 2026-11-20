@@ -101,4 +101,3 @@ visualise with
 [`love_plot()`](https://zl1212-ship-it.github.io/baselinr/reference/love_plot.md),
 and format with
 [`gt_baseline()`](https://zl1212-ship-it.github.io/baselinr/reference/gt_baseline.md).
-See `NEWS.md` for the roadmap.

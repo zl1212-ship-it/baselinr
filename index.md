@@ -12,8 +12,8 @@ choices.
 
 It is a small, education-specific package. For general-purpose covariate
 balance assessment, see [`cobalt`](https://ngreifer.github.io/cobalt/);
-`baselinr` focuses on the WWC determinations that education evaluation
-reports are required to state.
+`baselinr` focuses on the determinations a WWC review makes about a
+group-design study.
 
 ## Installation
 
@@ -101,7 +101,7 @@ computes the WWC clustering correction for mismatched analyses,
 returns the group-design study rating, and
 [`wwc_robustness()`](https://zl1212-ship-it.github.io/baselinr/reference/wwc_robustness.md)
 reports whether a baseline-equivalence verdict holds up under defensible
-alternative computations. See `NEWS.md` for the roadmap.
+alternative computations.
 
 ## Citation
 
