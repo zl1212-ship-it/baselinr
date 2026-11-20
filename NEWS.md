@@ -29,8 +29,7 @@
   analyses (Procedures Handbook v4.1, Appendix F, after Hedges 2007). Corrects
   the t statistic and its degrees of freedom for clustering and returns the
   clustering-corrected p value and significance decision, with the WWC default
-  ICCs (0.20 achievement, 0.10 other). Validated against 1,800+ clustered
-  findings in the official WWC study database.
+  ICCs (0.20 achievement, 0.10 other).
 * Documented that `cox_index()` follows Procedures Handbook v4.1 [VI.1.2] exactly:
   the Cox index carries no small-sample correction (that correction applies to
   Hedges' g only).
@@ -80,11 +79,6 @@
   and `mean_comparison` report event proportions.
 * The default covariate set now includes logical and factor columns, not only
   numeric ones.
-
-## Roadmap
-
-* Formatted output for reports (`gt` / `flextable`).
-* Love plot of standardized effect sizes across covariates.
 
 # baselinr 0.1.0
 
